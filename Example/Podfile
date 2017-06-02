@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CHSlideSwitchView_Example' do
+  pod 'CHSlideSwitchView', :path => '../'
+
+  target 'CHSlideSwitchView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
