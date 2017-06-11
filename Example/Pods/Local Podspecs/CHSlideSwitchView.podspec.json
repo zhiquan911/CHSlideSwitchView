@@ -1,0 +1,27 @@
+{
+  "name": "CHSlideSwitchView",
+  "version": "0.1.0",
+  "summary": "A short description of CHSlideSwitchView.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/zhiquan911/CHSlideSwitchView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zhiquan911": "zhiquan911@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/zhiquan911/CHSlideSwitchView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "CHSlideSwitchView/Classes/**/*",
+  "dependencies": {
+    "SnapKit": [
+      "~> 3.2.0"
+    ]
+  }
+}

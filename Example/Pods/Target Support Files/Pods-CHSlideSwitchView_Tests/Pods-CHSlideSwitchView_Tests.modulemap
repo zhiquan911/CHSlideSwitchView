@@ -1,0 +1,6 @@
+framework module Pods_CHSlideSwitchView_Tests {
+  umbrella header "Pods-CHSlideSwitchView_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

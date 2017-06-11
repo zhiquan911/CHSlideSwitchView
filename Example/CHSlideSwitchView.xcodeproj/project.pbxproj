@@ -10,11 +10,14 @@
 		0677103DA485211689F9B1CC /* Pods_CHSlideSwitchView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64853FA06449D9DF2D460E3 /* Pods_CHSlideSwitchView_Example.framework */; };
 		56DBED8BCE55EA90B87CC1DF /* Pods_CHSlideSwitchView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A29E141E3A095D23265B27 /* Pods_CHSlideSwitchView_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		C5448CAB1EE3FCCE00F5B456 /* DemoSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5448CAA1EE3FCCE00F5B456 /* DemoSelectViewController.swift */; };
+		C5448CAE1EE3FD0000F5B456 /* DemoNIBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5448CAD1EE3FD0000F5B456 /* DemoNIBViewController.swift */; };
+		C544B0A21EE999EF00B6DC0F /* DemoSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C544B0A11EE999EF00B6DC0F /* DemoSubViewController.swift */; };
+		C556F02E1EEA96A30018B2A7 /* HeaderViewNIBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556F02D1EEA96A30018B2A7 /* HeaderViewNIBViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,21 +32,25 @@
 
 /* Begin PBXFileReference section */
 		1B5A5CF088233BF4BB4C76CA /* Pods-CHSlideSwitchView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CHSlideSwitchView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CHSlideSwitchView_Tests/Pods-CHSlideSwitchView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		20BCCAC62CF5696DECF3B9D3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		20BCCAC62CF5696DECF3B9D3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3E36DF97FB9AF79DE60D3D06 /* Pods-CHSlideSwitchView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CHSlideSwitchView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CHSlideSwitchView_Example/Pods-CHSlideSwitchView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		56EF564FB3C28DE57B23B2E0 /* Pods-CHSlideSwitchView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CHSlideSwitchView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CHSlideSwitchView_Tests/Pods-CHSlideSwitchView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* CHSlideSwitchView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHSlideSwitchView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* CHSlideSwitchView_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CHSlideSwitchView_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		C5E65E6406B90DBE6F5FF989 /* CHSlideSwitchView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = CHSlideSwitchView.podspec; path = ../CHSlideSwitchView.podspec; sourceTree = "<group>"; };
-		CEDEEE38197D8E45AE089DA0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		C5448CAA1EE3FCCE00F5B456 /* DemoSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSelectViewController.swift; sourceTree = "<group>"; };
+		C5448CAD1EE3FD0000F5B456 /* DemoNIBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoNIBViewController.swift; sourceTree = "<group>"; };
+		C544B0A11EE999EF00B6DC0F /* DemoSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSubViewController.swift; sourceTree = "<group>"; };
+		C547AB0F1EE53E4C00735791 /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
+		C556F02D1EEA96A30018B2A7 /* HeaderViewNIBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewNIBViewController.swift; sourceTree = "<group>"; };
+		C5E65E6406B90DBE6F5FF989 /* CHSlideSwitchView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CHSlideSwitchView.podspec; path = ../CHSlideSwitchView.podspec; sourceTree = "<group>"; };
+		CEDEEE38197D8E45AE089DA0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E64853FA06449D9DF2D460E3 /* Pods_CHSlideSwitchView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CHSlideSwitchView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A29E141E3A095D23265B27 /* Pods_CHSlideSwitchView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CHSlideSwitchView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBE5D6DBC6A1D8C635719AB /* Pods-CHSlideSwitchView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CHSlideSwitchView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CHSlideSwitchView_Example/Pods-CHSlideSwitchView_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,8 +120,8 @@
 		607FACD21AFB9204008FA782 /* Example for CHSlideSwitchView */ = {
 			isa = PBXGroup;
 			children = (
+				C5448CAC1EE3FCD500F5B456 /* Demo */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -135,6 +142,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C547AB0F1EE53E4C00735791 /* Tests.playground */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -157,6 +165,33 @@
 				CEDEEE38197D8E45AE089DA0 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		C5448CAC1EE3FCD500F5B456 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				C556F02A1EEA8F120018B2A7 /* sub */,
+				C556F0291EEA8EF90018B2A7 /* nib */,
+				C5448CAA1EE3FCCE00F5B456 /* DemoSelectViewController.swift */,
+			);
+			name = Demo;
+			sourceTree = "<group>";
+		};
+		C556F0291EEA8EF90018B2A7 /* nib */ = {
+			isa = PBXGroup;
+			children = (
+				C5448CAD1EE3FD0000F5B456 /* DemoNIBViewController.swift */,
+				C556F02D1EEA96A30018B2A7 /* HeaderViewNIBViewController.swift */,
+			);
+			name = nib;
+			sourceTree = "<group>";
+		};
+		C556F02A1EEA8F120018B2A7 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+				C544B0A11EE999EF00B6DC0F /* DemoSubViewController.swift */,
+			);
+			name = sub;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,10 +250,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = HE96WCSGPU;
 						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = HE96WCSGPU;
 						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -361,7 +398,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				C544B0A21EE999EF00B6DC0F /* DemoSubViewController.swift in Sources */,
+				C556F02E1EEA96A30018B2A7 /* HeaderViewNIBViewController.swift in Sources */,
+				C5448CAE1EE3FD0000F5B456 /* DemoNIBViewController.swift in Sources */,
+				C5448CAB1EE3FCCE00F5B456 /* DemoSelectViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,7 +483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -483,7 +523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -496,10 +536,11 @@
 			baseConfigurationReference = FDBE5D6DBC6A1D8C635719AB /* Pods-CHSlideSwitchView_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HE96WCSGPU;
 				INFOPLIST_FILE = CHSlideSwitchView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.demo.CHSlideSwitchView-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -510,10 +551,11 @@
 			baseConfigurationReference = 3E36DF97FB9AF79DE60D3D06 /* Pods-CHSlideSwitchView_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HE96WCSGPU;
 				INFOPLIST_FILE = CHSlideSwitchView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chance.demo.CHSlideSwitchView-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -523,6 +565,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 56EF564FB3C28DE57B23B2E0 /* Pods-CHSlideSwitchView_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = HE96WCSGPU;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -543,6 +586,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1B5A5CF088233BF4BB4C76CA /* Pods-CHSlideSwitchView_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = HE96WCSGPU;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

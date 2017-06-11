@@ -1,25 +1,273 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5b4-B0-BVq">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <!--Tab Bar Controller-->
+        <scene sceneID="Jeg-TT-krC">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="5b4-B0-BVq" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="GaU-r3-0AD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="cg0-sq-dH6" kind="relationship" relationship="viewControllers" id="sHr-wH-g2x"/>
+                        <segue destination="Thx-UV-uzj" kind="relationship" relationship="viewControllers" id="9eu-vA-dmk"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oBw-qC-R0T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1020" y="377"/>
+        </scene>
+        <!--NoTab-->
+        <scene sceneID="eNi-x1-Vyv">
+            <objects>
+                <navigationController id="Thx-UV-uzj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="NoTab" id="0lo-TF-s6e"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KyA-xY-07y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bt3-B5-29v" kind="relationship" relationship="rootViewController" id="wJT-ja-r4p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l0T-Im-JzQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="866"/>
+        </scene>
+        <!--Demo Select View Controller-->
+        <scene sceneID="Y4x-l4-wHn">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bt3-B5-29v" customClass="DemoSelectViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="S72-cm-Xrd"/>
+                        <viewControllerLayoutGuide type="bottom" id="Amh-BE-vNv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <view key="view" contentMode="scaleToFill" id="S7g-j6-2vL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SRh-PJ-N4U">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bt3-B5-29v" id="gxE-Ag-v65"/>
+                                    <outlet property="delegate" destination="bt3-B5-29v" id="RA8-oF-xWD"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Amh-BE-vNv" firstAttribute="top" secondItem="SRh-PJ-N4U" secondAttribute="bottom" id="MwW-OO-eAS"/>
+                            <constraint firstAttribute="trailing" secondItem="SRh-PJ-N4U" secondAttribute="trailing" id="jk4-q3-mxO"/>
+                            <constraint firstItem="SRh-PJ-N4U" firstAttribute="leading" secondItem="S7g-j6-2vL" secondAttribute="leading" id="nDs-k6-ynw"/>
+                            <constraint firstItem="SRh-PJ-N4U" firstAttribute="top" secondItem="S72-cm-Xrd" secondAttribute="bottom" id="xj0-tm-NGR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="88i-GL-5fa"/>
+                    <connections>
+                        <outlet property="tableView" destination="SRh-PJ-N4U" id="udt-zG-HkE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R6z-m6-Wja" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="806" y="866"/>
+        </scene>
+        <!--Header ViewNIB View Controller-->
+        <scene sceneID="n6z-Yt-y2o">
+            <objects>
+                <viewController storyboardIdentifier="HeaderViewNIBViewController" id="g0N-wN-mWX" customClass="HeaderViewNIBViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3GQ-rI-JPv"/>
+                        <viewControllerLayoutGuide type="bottom" id="rFK-c9-iuZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g1o-e2-LXe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-kH-9HD" customClass="CHSlideSwitchView" customModule="CHSlideSwitchView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isIntegrateHeaderView" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="headerView" destination="0Gn-io-6We" id="Uz7-Rd-Re0"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NIe-kH-9HD" secondAttribute="trailing" id="4hM-Bu-rFc"/>
+                            <constraint firstAttribute="bottom" secondItem="NIe-kH-9HD" secondAttribute="bottom" id="GBe-Oj-otW"/>
+                            <constraint firstItem="NIe-kH-9HD" firstAttribute="top" secondItem="3GQ-rI-JPv" secondAttribute="bottom" id="RbM-og-OS9"/>
+                            <constraint firstItem="NIe-kH-9HD" firstAttribute="leading" secondItem="g1o-e2-LXe" secondAttribute="leading" id="XuS-gO-uhy"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="GVS-0i-iWz">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="0Gn-io-6We" customClass="CHSlideHeaderView" customModule="CHSlideSwitchView">
+                            <rect key="frame" x="97.5" y="5.5" width="180" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="slideSwitchView" destination="NIe-kH-9HD" id="kch-2s-QYF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v4a-e5-21H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1576.8" y="-606.74662668665667"/>
+        </scene>
+        <!--HaveTab-->
+        <scene sceneID="MXb-Zs-KOa">
+            <objects>
+                <navigationController id="cg0-sq-dH6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="HaveTab" id="5dq-eu-NjD"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WoQ-DI-ghm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oHI-ci-9Jk" kind="relationship" relationship="rootViewController" id="7Rr-S6-rHE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vl1-Hv-pSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="138"/>
+        </scene>
+        <!--Demo Select View Controller-->
+        <scene sceneID="3gN-WX-mGj">
+            <objects>
+                <viewController storyboardIdentifier="DemoSelectViewController" automaticallyAdjustsScrollViewInsets="NO" id="oHI-ci-9Jk" customClass="DemoSelectViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wvX-pe-zqc"/>
+                        <viewControllerLayoutGuide type="bottom" id="sed-Jj-3f8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GT4-o4-M8v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ngk-JF-q90">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="oHI-ci-9Jk" id="lH1-E5-tr7"/>
+                                    <outlet property="delegate" destination="oHI-ci-9Jk" id="5bn-3l-aXs"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ngk-JF-q90" secondAttribute="trailing" id="3HB-qg-zsG"/>
+                            <constraint firstItem="Ngk-JF-q90" firstAttribute="top" secondItem="wvX-pe-zqc" secondAttribute="bottom" id="ELb-q3-6Z8"/>
+                            <constraint firstItem="sed-Jj-3f8" firstAttribute="top" secondItem="Ngk-JF-q90" secondAttribute="bottom" id="Kwd-VR-H7X"/>
+                            <constraint firstItem="Ngk-JF-q90" firstAttribute="leading" secondItem="GT4-o4-M8v" secondAttribute="leading" id="XW5-ew-ya2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eIp-Lm-N3o"/>
+                    <connections>
+                        <outlet property="tableView" destination="Ngk-JF-q90" id="m6Z-R9-lOl"/>
+                        <segue destination="sNI-We-qu7" kind="show" id="JLb-YY-Mif"/>
+                        <segue destination="g0N-wN-mWX" kind="show" id="KI6-Wh-d5y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ky5-2z-iao" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="806" y="137"/>
+        </scene>
+        <!--DemoNIB View Controller-->
+        <scene sceneID="fJ2-JC-hEN">
+            <objects>
+                <viewController storyboardIdentifier="DemoNIBViewController" id="sNI-We-qu7" customClass="DemoNIBViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="elD-m0-xUm"/>
+                        <viewControllerLayoutGuide type="bottom" id="KZ6-tN-nBF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HQM-H8-V34">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYi-RC-kyy" customClass="CHSlideSwitchView" customModule="CHSlideSwitchView">
+                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4g-Se-CWz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ojs-b7-e7G"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="updateTab" id="lQb-cM-l2V">
+                                        <connections>
+                                            <action selector="handleUpdateTabPressWithSender:" destination="sNI-We-qu7" id="ySI-dU-V1e"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="h4g-Se-CWz" secondAttribute="trailing" id="EtH-L0-ob5"/>
+                            <constraint firstItem="TYi-RC-kyy" firstAttribute="top" secondItem="h4g-Se-CWz" secondAttribute="bottom" id="Hzl-ws-hIR"/>
+                            <constraint firstAttribute="trailing" secondItem="TYi-RC-kyy" secondAttribute="trailing" id="Jsf-cI-pLl"/>
+                            <constraint firstItem="h4g-Se-CWz" firstAttribute="top" secondItem="elD-m0-xUm" secondAttribute="bottom" id="KTG-wH-TQb"/>
+                            <constraint firstItem="h4g-Se-CWz" firstAttribute="leading" secondItem="HQM-H8-V34" secondAttribute="leading" id="RBq-HH-YgZ"/>
+                            <constraint firstItem="KZ6-tN-nBF" firstAttribute="top" secondItem="TYi-RC-kyy" secondAttribute="bottom" id="ai6-HI-xtK"/>
+                            <constraint firstItem="TYi-RC-kyy" firstAttribute="leading" secondItem="HQM-H8-V34" secondAttribute="leading" id="mjF-cJ-FKt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="slideSwitchView" destination="TYi-RC-kyy" id="zqj-cs-yfk"/>
+                        <segue destination="heu-PR-oB1" kind="show" id="aQB-5p-Qei"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R7V-uE-F18" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1576.8" y="136.28185907046478"/>
+        </scene>
+        <!--Demo Sub View Controller-->
+        <scene sceneID="LaD-GT-cDA">
+            <objects>
+                <viewController storyboardIdentifier="DemoSubViewController" id="heu-PR-oB1" customClass="DemoSubViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PhV-4R-KBk"/>
+                        <viewControllerLayoutGuide type="bottom" id="N1L-Wc-S1u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BlO-86-h7z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THt-0c-rcg">
+                                <rect key="frame" x="147" y="124" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1Ve-pA-S3R"/>
+                                    <constraint firstAttribute="width" constant="80" id="zXU-PC-lDx"/>
+                                </constraints>
+                                <state key="normal" title="UpdateTab"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="THt-0c-rcg" firstAttribute="top" secondItem="PhV-4R-KBk" secondAttribute="bottom" constant="60" id="uLX-VU-hum"/>
+                            <constraint firstItem="THt-0c-rcg" firstAttribute="centerX" secondItem="BlO-86-h7z" secondAttribute="centerX" id="wf9-06-alL"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cma-Ua-yVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2404" y="136"/>
         </scene>
     </scenes>
 </document>
