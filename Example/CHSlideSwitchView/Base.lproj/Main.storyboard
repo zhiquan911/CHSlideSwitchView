@@ -181,6 +181,7 @@
                         <outlet property="tableView" destination="Ngk-JF-q90" id="m6Z-R9-lOl"/>
                         <segue destination="sNI-We-qu7" kind="show" id="JLb-YY-Mif"/>
                         <segue destination="g0N-wN-mWX" kind="show" id="KI6-Wh-d5y"/>
+                        <segue destination="mXC-4i-3R7" kind="show" id="ceM-ti-ffh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ky5-2z-iao" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -268,6 +269,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cma-Ua-yVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2404" y="136"/>
+        </scene>
+        <!--Customer Tab View Controller-->
+        <scene sceneID="d58-ab-jP8">
+            <objects>
+                <viewController storyboardIdentifier="CustomerTabViewController" id="mXC-4i-3R7" customClass="CustomerTabViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BG8-l8-HF7"/>
+                        <viewControllerLayoutGuide type="bottom" id="nRW-fN-xLU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wsR-04-v3e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fom-kA-dVa" customClass="CHSlideSwitchView" customModule="CHSlideSwitchView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isIntegrateHeaderView" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="heightOfHeaderView">
+                                        <real key="value" value="90"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fom-kA-dVa" secondAttribute="bottom" id="KUs-mO-xoV"/>
+                            <constraint firstAttribute="trailing" secondItem="fom-kA-dVa" secondAttribute="trailing" id="ZPX-h7-SQC"/>
+                            <constraint firstItem="fom-kA-dVa" firstAttribute="top" secondItem="BG8-l8-HF7" secondAttribute="bottom" id="cHN-Ud-ThT"/>
+                            <constraint firstItem="fom-kA-dVa" firstAttribute="leading" secondItem="wsR-04-v3e" secondAttribute="leading" id="kd0-R7-UIP"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="slideSwitchView" destination="fom-kA-dVa" id="8Zl-42-WhI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4P5-G5-1PC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1577" y="866"/>
         </scene>
     </scenes>
 </document>

@@ -56,13 +56,6 @@ class HeaderViewNIBViewController: UIViewController {
 
 extension HeaderViewNIBViewController: CHSlideSwitchViewDelegate {
         
-    /// 顶部Tabbar高度
-    ///
-    /// - Parameter view: 组件对象
-    /// - Returns: 自定义高度
-    func heightOfSlideHeaderView(view: CHSlideSwitchView) -> CGFloat {
-        return 35
-    }
     
     /// 点击顶部tab
     ///

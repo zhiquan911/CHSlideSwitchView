@@ -113,9 +113,6 @@ open class CHSlideHeaderView: UIView {
     /// 当前选中的按钮，-1表示没有初始化
     open var currentIndex: Int = -1
     
-    /// Tabs是否固定宽度，不溢出
-    open var isFixWidth: Bool = false
-    
     /// 右侧固定功能按钮
     open var viewAccessory: UIView?                     //右侧功能按钮
     
@@ -135,7 +132,7 @@ open class CHSlideHeaderView: UIView {
     open var titlePading: CGFloat = 25
     
     //用来判断向左向右
-    open var endScale: CGFloat = 0
+    fileprivate var endScale: CGFloat = 0
     
     /// 标签布局样式，宽度足够大下最多显示的标签数
     open var layout: CHSlideHeaderViewLayout = .center
@@ -573,7 +570,7 @@ open class CHSlideHeaderView: UIView {
         self.slideSwitchView?.setContentOffset(index: index, animated: true)
         
         if self.slideSwitchView != nil {
-            self.slideSwitchView?.delegate?.slideSwitchView(view: self.slideSwitchView!, didSelected: self.currentIndex)
+            self.slideSwitchView?.delegate?.slideSwitchView?(view: self.slideSwitchView!, didSelected: self.currentIndex)
         }
         
     }
@@ -589,7 +586,6 @@ open class CHSlideHeaderView: UIView {
         if from >= 0 {
             
             let fromView = self.viewTabs[from]
-            let formItem = self.slideItems[from]
             
             switch self.tabType {
             case .text:
@@ -607,7 +603,6 @@ open class CHSlideHeaderView: UIView {
         if to >= 0 {
             
             let toView = self.viewTabs[to]
-            let toItem = self.slideItems[to]
 //            let tempWidth = toView.width
             switch self.tabType {
             case .text:

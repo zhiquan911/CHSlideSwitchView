@@ -63,7 +63,7 @@ open class CHSlideSwitchView: UIView {
     open var viewsCache = [Int: AnyObject]()
     
     /// 代理
-    public weak var delegate: CHSlideSwitchViewDelegate? {
+    @IBOutlet public weak var delegate: CHSlideSwitchViewDelegate? {
         didSet {
             //关闭UIViewController自动调整scrollInsets
             self.parent?.automaticallyAdjustsScrollViewInsets = false
@@ -80,10 +80,7 @@ open class CHSlideSwitchView: UIView {
     var startOffsetX: CGFloat = 0
     
     /// 顶部标签栏高度
-    var heightOfHeaderView: CGFloat {
-        let base: CGFloat = 35  //默认35
-        return self.delegate?.heightOfSlideHeaderView(view: self) ?? base
-    }
+    @IBInspectable var heightOfHeaderView: CGFloat = 35
     
     
     /// 父级控制器
@@ -178,6 +175,7 @@ open class CHSlideSwitchView: UIView {
         super.layoutSubviews()
         self.layoutContentView()
     }
+    
     
     /// 创建内容视图UI
     open func layoutContentView() {

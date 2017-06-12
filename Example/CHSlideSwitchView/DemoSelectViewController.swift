@@ -14,7 +14,8 @@ class DemoSelectViewController: UIViewController {
     
     let demoVC: [String] = [
         "DemoNIBViewController",
-        "HeaderViewNIBViewController"
+        "HeaderViewNIBViewController",
+        "CustomerTabViewController"
     ]
     
 

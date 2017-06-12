@@ -90,14 +90,6 @@ class DemoNIBViewController: UIViewController {
 
 extension DemoNIBViewController: CHSlideSwitchViewDelegate {
     
-    /// 视图加载总数
-    ///
-    /// - Parameter view: 组件对象
-    /// - Returns: 视图加载总数
-    func numberOfSlideSwitchView(view: CHSlideSwitchView) -> Int {
-        return self.colors.count
-    }
-
     
     /// 视图数据源
     ///
@@ -108,14 +100,6 @@ extension DemoNIBViewController: CHSlideSwitchViewDelegate {
     func slideSwitchView(view: CHSlideSwitchView, itemForIndexAt index: Int) -> CHSlideItem {
         let item = self.datas[index]
         return item
-    }
-    
-    /// 顶部Tabbar高度
-    ///
-    /// - Parameter view: 组件对象
-    /// - Returns: 自定义高度
-    func heightOfSlideHeaderView(view: CHSlideSwitchView) -> CGFloat {
-        return 35
     }
     
     /// 点击顶部tab
