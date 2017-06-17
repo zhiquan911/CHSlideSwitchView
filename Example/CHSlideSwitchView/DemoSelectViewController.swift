@@ -48,6 +48,7 @@ extension DemoSelectViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let story = UIStoryboard.init(name: "Main", bundle: nil)
         let name = self.demoVC[indexPath.row]
         let vc = story.instantiateViewController(withIdentifier: name)

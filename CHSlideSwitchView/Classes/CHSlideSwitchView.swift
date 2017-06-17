@@ -82,6 +82,11 @@ open class CHSlideSwitchView: UIView {
     /// 顶部标签栏高度
     @IBInspectable var heightOfHeaderView: CGFloat = 35
     
+    /// 是否插入新项目
+    open var isInserting: Bool = false
+    
+    public typealias LayoutSubViewsCompleted = () -> Void
+    public var layoutSubViewsCompletedBlock: LayoutSubViewsCompleted?
     
     /// 父级控制器
     var parent: UIViewController? {
@@ -108,17 +113,35 @@ open class CHSlideSwitchView: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        self.addNotification()
         self.createUI()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         //如果你通过在XIB中设置初始化值，不要在这里做子视图的初始化，而是通过awakeFromNib
+        self.addNotification()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     open override func awakeFromNib() {
         super.awakeFromNib()
         self.createUI()
+    }
+    
+    /// 添加通知
+    func addNotification() {
+        
+        //注册一个通知用于更新本地缓存
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.layoutSubviewsCompleted),
+            name: NSNotification.Name(rawValue: "layoutSubviewsCompleted"),
+            object: nil)
+        
     }
     
     // MARK: - 内部方法
@@ -165,8 +188,16 @@ open class CHSlideSwitchView: UIView {
             make.bottom.equalToSuperview().offset(0)
         }
         
-        
-        
+        //初始化完成后执行
+        self.layoutSubViewsCompletedBlock = {
+            () -> Void in
+            //是否加载全部页面
+            if !self.loadAll && self.self.slideItems.count > 0 {
+                //只加载显示的当前页面
+                self.setContentOffset(index: self.showIndex, animated: false)
+                self.headerView?.isSelectTab = false
+            }
+        }
     }
     
     
@@ -174,25 +205,36 @@ open class CHSlideSwitchView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         self.layoutContentView()
+        
+        //布局完成后通知执行的方法
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "layoutSubviewsCompleted"), object: nil)
+        
+        
     }
     
     
+    /// 布局完成后通知执行的方法
+    func layoutSubviewsCompleted() {
+        self.layoutSubViewsCompletedBlock?()
+        self.layoutSubViewsCompletedBlock = nil //清空执行
+    }
+    
     /// 创建内容视图UI
     open func layoutContentView() {
+        
+        //如果点击Tab标签过程中视图被动执行layoutSubviews，避免动画冲突，不重设布局
+        if let isSelectTab = self.headerView?.isSelectTab, isSelectTab {
+            return
+        }
         
         /// 设置数据源
         let viewCount = self.setDataSources()
         
         self.rootScrollView.contentSize = CGSize(width: CGFloat(viewCount) * self.width, height: self.scrollHeight)
         
-        //是否加载全部页面
-        if !self.loadAll && viewCount > 0 {
-            //只加载显示的当前页面
-            self.setContentOffset(index: self.showIndex, animated: false)
-            
-        }
         
-        self.headerView?.isSelectTab = false
+        
+        
     }
     
     
@@ -324,12 +366,61 @@ open class CHSlideSwitchView: UIView {
         }
     }
     
+    
+    /// 插入一个新的页面
+    ///
+    /// - Parameters:
+    ///   - item: 新项
+    ///   - index: 插入位置
+    ///   - isSelected: 插入后是否显示当前页
+    open func insertTab(item: CHSlideItem, at index: Int = -1, isSelected: Bool = false) {
+        var insertIndex = index
+        if index == -1 || index > self.slideItems.count {
+            insertIndex = self.slideItems.endIndex
+        }
+        self.slideItems.insert(item, at: insertIndex)
+//        let current = self.currentIndex
+        //重新加载后执行，将新加入作为当前页显示
+        self.layoutSubViewsCompletedBlock = {
+            () -> Void in
+            if isSelected {
+                self.currentIndex = insertIndex
+            } else {
+//                self.currentIndex = -1
+                self.headerView?.currentIndex = -1
+//                self.currentIndex = current
+                //插入的大于当前，显示当前+1才能显示正确的页面
+                if insertIndex > self.currentIndex {
+                    
+                }
+                self.headerView?.selectedTabView(at: self.currentIndex, animated: false)
+            }
+            
+        }
+        
+        
+        self.reloadData()
+//        if isSelected { //显示到该页
+//            //滚动到当前页面
+//            self.setContentOffset(index: insertIndex, animated: true)
+//        }
+        
+    }
 }
 
+
+// MARK: - 实现滚动委托方法
 extension CHSlideSwitchView: UIScrollViewDelegate {
     
     
     func scrollHandlePan(pan: UIPanGestureRecognizer) {
+
+        //当滑道左边界时，传递滑动事件给代理
+        if self.rootScrollView.contentOffset.x <= 0 {
+            self.delegate?.slideSwitchView?(view: self, direction: true, panEdge: pan)
+        } else if(self.rootScrollView.contentOffset.x >= self.rootScrollView.contentSize.width - self.rootScrollView.bounds.size.width) {
+            self.delegate?.slideSwitchView?(view: self, direction: false, panEdge: pan)
+        }
         
     }
     
@@ -344,6 +435,10 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
             let point = CGPoint(x: CGFloat(index) * self.rootScrollView.width, y: 0)
             self.setContentOffset(point, animated: true)
         }
+        
+        //获取当前页面是否可以继续滑动
+        let canScroll = self.delegate?.slideSwitchView?(view: self, canSwipeScroll: index) ?? true
+        self.rootScrollView.isScrollEnabled = canScroll
     }
     
     
@@ -357,6 +452,7 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
         
         //计算偏移到哪一页
         self.currentIndex = Int(contentOffset.x / self.width)
+        self.showIndex = self.currentIndex
         _ = self.addViewCacheIndex(index: self.currentIndex)
         
     }
@@ -366,6 +462,7 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
     ///
     /// - Parameter scrollView:
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        //scrollView.isScrollEnabled = false
         self.startOffsetX = scrollView.contentOffset.x
     }
     
@@ -374,6 +471,9 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
     ///
     /// - Parameter scrollView:
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        guard scrollView.isScrollEnabled else {
+//            return
+//        }
         let scale = self.rootScrollView.contentOffset.x / self.rootScrollView.contentSize.width
         self.headerView?.changePointScale(scale: scale)
     }
@@ -389,6 +489,10 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
             _ = self.addViewCacheIndex(index: self.currentIndex)
         }
         self.headerView?.isSelectTab = false
+        
+        //获取当前页面是否可以继续滑动
+        let canScroll = self.delegate?.slideSwitchView?(view: self, canSwipeScroll: self.currentIndex) ?? true
+        scrollView.isScrollEnabled = canScroll
     }
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {

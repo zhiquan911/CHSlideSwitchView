@@ -51,8 +51,8 @@ public enum CHSlideTabType {
 /// 标签元素定义
 public class CHSlideItem {
     
-    /// 标签
-    public var key: Int = 0
+//    /// 标签
+//    public var key: Int = 0
     
     /// 标题
     public var title: String = ""
@@ -64,9 +64,9 @@ public class CHSlideItem {
     public var content: CHSlideItemType!
     
     
-    public convenience init(key: Int, title: String = "", tabView: UIView? = nil, content: CHSlideItemType) {
+    public convenience init(title: String = "", tabView: UIView? = nil, content: CHSlideItemType) {
         self.init()
-        self.key = key
+//        self.key = key
         self.title = title
         self.tabView = tabView
         self.content = content

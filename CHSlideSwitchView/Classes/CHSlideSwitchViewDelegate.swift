@@ -28,4 +28,13 @@ public protocol CHSlideSwitchViewDelegate: class {
     ///   - atIndex: 点击位置
     @objc optional func slideSwitchView(view: CHSlideSwitchView, didSelected atIndex: Int)
     
+    
+    /// 是否为当前页面提供手势滑动
+    ///
+    /// - Parameters:
+    ///   - view: 组件对象
+    ///   - atIndex: 当前位置
+    /// - Returns: 是否可以滑动
+    @objc optional func slideSwitchView(view: CHSlideSwitchView, canSwipeScroll atIndex: Int) -> Bool
+    
 }

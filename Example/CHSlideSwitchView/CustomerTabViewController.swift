@@ -48,7 +48,7 @@ class CustomerTabViewController: UIViewController {
             tabbarItem.labelRate.text = "10.0%"
             tabbarItem.labelPrice.text = "￥2000.00"
             
-            let item = CHSlideItem(key: i, tabView: tabbarItem, content: CHSlideItemType.viewController({ () -> UIViewController in
+            let item = CHSlideItem(tabView: tabbarItem, content: CHSlideItemType.viewController({ () -> UIViewController in
                 let story = UIStoryboard.init(name: "Main", bundle: nil)
                 let vc = story.instantiateViewController(withIdentifier: "DemoSelectViewController") as! DemoSelectViewController
                 return vc

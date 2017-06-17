@@ -49,13 +49,13 @@ open class CHSlideSelectedView: UIView {
 /// 顶部滚动标签的布局样式
 ///
 /// - average: 平均宽度布局(最多显示数)
-/// - center: 居中
+/// - center: 居中(是否以数量中分)
 /// - left: 左对齐
 /// - right: 右对齐
 public enum CHSlideHeaderViewLayout {
     
     case average(max: Int)
-    case center
+    case center(halve: Bool)
     case left
     case right
     
@@ -63,7 +63,7 @@ public enum CHSlideHeaderViewLayout {
 //重写相等处理
 public func ==(lhs: CHSlideHeaderViewLayout, rhs: CHSlideHeaderViewLayout) -> Bool {
     switch (lhs,rhs) {
-    case (.center,.center) : return true
+    case let (.center(i),.center(j)) where i == j: return true
     case (.left,.left) : return true
     case (.right,.right) : return true
     case let (.average(i), .average(j)) where i == j: return true
@@ -113,9 +113,12 @@ open class CHSlideHeaderView: UIView {
     /// 当前选中的按钮，-1表示没有初始化
     open var currentIndex: Int = -1
     
-    /// 右侧固定功能按钮
-    open var viewAccessory: UIView?                     //右侧功能按钮
+    /// 右侧固定功能按钮de
+    open var viewAccessoryContainer: UIView!
     
+    /// 右侧固定功能按钮
+    open var viewAccessory: UIView?                         //右侧功能按钮
+
     /// 主视图
     open weak var slideSwitchView: CHSlideSwitchView?
     
@@ -135,7 +138,7 @@ open class CHSlideHeaderView: UIView {
     fileprivate var endScale: CGFloat = 0
     
     /// 标签布局样式，宽度足够大下最多显示的标签数
-    open var layout: CHSlideHeaderViewLayout = .center
+    open var layout: CHSlideHeaderViewLayout = .center(halve: true)
     
     /// 缓存一个标题宽度数组，因为文字一样，宽度一样，这样可以节省内存
     open var titlesWidthCache: [String: CGFloat] = [String: CGFloat]()
@@ -150,9 +153,7 @@ open class CHSlideHeaderView: UIView {
     open var tabType: CHSlideTabType = .text
     
     /// 多功能视图宽度
-    open var viewAccessoryWidth: CGFloat {
-        return 0
-    }
+    open var viewAccessoryWidth: CGFloat = 0
     
     /// 区分点击还是滑动
     open var isSelectTab: Bool = false
@@ -192,20 +193,21 @@ open class CHSlideHeaderView: UIView {
         self.tabScrollView = UIScrollView()
         self.addSubview(self.tabScrollView)
         
-        if let more = self.viewAccessory {
-            self.addSubview(more)
-            //设置布局
-            more.snp.makeConstraints { (make) in
-                make.right.equalToSuperview().offset(0)
-                make.width.equalTo(self.viewAccessoryWidth)
-                make.top.bottom.equalToSuperview().offset(0)
-            }
+        //设置一个功能按钮的容器，用于加入用户自定义的功能按钮
+        self.viewAccessoryContainer = UIView()
+        self.viewAccessoryContainer.backgroundColor = UIColor.clear
+        self.addSubview(self.viewAccessoryContainer)
+        //设置布局
+        self.viewAccessoryContainer.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().offset(0)
+            make.width.equalTo(0)
+            make.top.bottom.equalToSuperview().offset(0)
         }
         
         //设置布局
         self.tabScrollView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(0)
-            make.right.equalToSuperview().offset(self.viewAccessoryWidth)
+            make.right.equalTo(self.viewAccessoryContainer.snp.left).offset(0)
             make.top.bottom.equalToSuperview().offset(0)
         }
         
@@ -233,7 +235,7 @@ open class CHSlideHeaderView: UIView {
         self.tabScrollView.contentSize = CGSize(width: max(self.scrollWidth, self.totalTabWidth), height: self.scrollHeight)
         
         //layout完成重置这个值
-        self.isSelectTab = false
+        //        self.isSelectTab = false
         
         self.changeTabContentOffset()
     }
@@ -254,11 +256,11 @@ open class CHSlideHeaderView: UIView {
             case .text:
                 tabView = self.createTabViews(with: item.title, color: self.normalColor, selectedColor: self.selectedColor)
             case .view:
-                tabView = item.tabView!
+                tabView = self.createCustomTabViews(view: item.tabView!)
             }
             
             //存到数组中
-            tabView.tag = item.key
+            tabView.tag = i
             self.viewTabs.append(tabView)
             self.tabScrollView.addSubview(tabView)
         }
@@ -301,28 +303,46 @@ open class CHSlideHeaderView: UIView {
         _ = tabViews.map { $0.transform = CGAffineTransform.identity }
         
         //判断总宽度是否超出最大滚动范围，超过了居中布局就没有意义，采用左对齐布局
-        if self.totalTabWidth > self.scrollWidth && self.layout == .center {
-            self.layout = .left
+        if self.totalTabWidth > self.scrollWidth {
+            switch self.layout {
+            case .center(halve: _):
+                self.layout = .left
+            default:break
+            }
         }
         
         // 计算起始tab的布局起点
         var startX: CGFloat = self.padding.left
         
-        if self.layout == .center {
+        
+        switch self.layout {
+        case let .center(halve: halve):
             
-            // 计算居中的起点
-            startX = self.scrollWidth / 2
-            
-            for i in 0..<tabViews.count / 2 {
-                startX = startX - self.getTabViewWidth(at: i)
+            if halve {
+                // 计算居中的起点
+                startX = self.scrollWidth / 2
+                
+                
+                for i in 0..<tabViews.count / 2 {
+                    startX = startX - self.getTabViewWidth(at: i)
+                }
+                
+                //数组为奇数，中间的元素宽度减半
+                if tabViews.count % 2 == 1 {
+                    startX = startX - self.getTabViewWidth(at: tabViews.count / 2) / 2
+                }
+                
+            } else {
+                // 计算居中的起点
+                startX = (self.scrollWidth - self.totalTabWidth) / 2
+                
             }
             
-            //数组为奇数，中间的元素宽度减半
-            if tabViews.count % 2 == 1 {
-                startX = startX - self.getTabViewWidth(at: tabViews.count / 2) / 2
-            }
             
+            
+        default:break
         }
+        
         
         // 布局所有tabview
         for (i, tab) in tabViews.enumerated() {
@@ -493,7 +513,7 @@ open class CHSlideHeaderView: UIView {
             
             textWidth = textSize.width + padding
         }
-
+        
         return textWidth
     }
     
@@ -514,10 +534,22 @@ open class CHSlideHeaderView: UIView {
         btn.setTitleColor(selectedColor, for: .selected)
         btn.addTarget(self, action: #selector(self.handleTabViewPress(sender:)),
                       for: .touchUpInside)
-        
+        btn.backgroundColor = UIColor.clear
         return btn
     }
     
+    
+    /// 用户自定义Tab增加点击事件
+    ///
+    /// - Parameter view: 自定义View
+    /// - Returns: 添加点击事件后的View
+    open func createCustomTabViews(view: UIView) -> UIView {
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer()
+        tap.addTarget(self, action: #selector(self.handleTabViewPress(sender:)))
+        view.addGestureRecognizer(tap)
+        return view
+    }
     
     /// 处理Tab按钮点击事件
     ///
@@ -555,14 +587,21 @@ open class CHSlideHeaderView: UIView {
         self.currentIndex = index;
         self.changeTabContentOffset()
         
+        if animated {
+            UIView.animate(withDuration: self.animationTime) {
+                self.moveSelectedView(from: before, to: self.currentIndex)
+            }
+        } else {
+            self.moveSelectedView(from: before, to: self.currentIndex)
+        }
+    
         
-        UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(self.animationTime)
-        UIView.setAnimationsEnabled(animated)
-        
-        self.moveSelectedView(from: before, to: self.currentIndex)
-        
-        UIView.commitAnimations()
+//        UIView.beginAnimations(nil, context: nil)
+//        UIView.setAnimationBeginsFromCurrentState(true)
+//        UIView.setAnimationDuration(self.animationTime)
+//        UIView.setAnimationsEnabled(animated)
+//        self.moveSelectedView(from: before, to: self.currentIndex)
+//        UIView.commitAnimations()
         
         self.isSelectTab = true
         
@@ -603,7 +642,7 @@ open class CHSlideHeaderView: UIView {
         if to >= 0 {
             
             let toView = self.viewTabs[to]
-//            let tempWidth = toView.width
+            //            let tempWidth = toView.width
             switch self.tabType {
             case .text:
                 let btn = toView as! UIButton
@@ -612,7 +651,7 @@ open class CHSlideHeaderView: UIView {
             default:
                 break
             }
-//            NSLog("tempWidth : toView.width = \(tempWidth) : \(toView.width)")
+            //            NSLog("tempWidth : toView.width = \(tempWidth) : \(toView.width)")
             
             //处理选择View
             self.selectedView?.width = toView.bounds.size.width
@@ -627,7 +666,7 @@ open class CHSlideHeaderView: UIView {
     ///
     func changeTabContentOffset() {
         
-        if self.totalTabWidth > self.scrollWidth {
+        if self.totalTabWidth > self.scrollWidth && self.currentIndex >= 0 {
             let view = self.viewTabs[self.currentIndex]
             if view.centerX < self.scrollWidth / 2 {
                 self.tabScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -786,7 +825,7 @@ open class CHSlideHeaderView: UIView {
             ),
             for: .normal)
         
-       
+        
     }
     
     
@@ -832,6 +871,39 @@ open class CHSlideHeaderView: UIView {
         let item = self.slideItems[index]
         let newItem = block(tabView, item)
         self.slideItems[index] = newItem
+    }
+    
+    
+    /// 设置功能按钮
+    ///
+    /// - Parameters:
+    ///   - view: 功能按钮视图
+    ///   - width: 宽度
+    ///   - align: 布局
+    open func setAccessoryView(view: UIView, width: CGFloat, align: NSTextAlignment = .center) {
+        _ = self.viewAccessoryContainer.subviews.map { $0.removeFromSuperview() }
+        self.viewAccessory = view
+        self.viewAccessoryContainer.addSubview(view)
+        
+        self.viewAccessory?.snp.makeConstraints({ (make) in
+            make.width.equalTo(view.width)
+            make.height.equalTo(view.height)
+            
+            if align == .center {
+                make.center.equalToSuperview()
+            } else if align == .left {
+                make.left.equalToSuperview()
+            } else if align == .right {
+                make.right.equalToSuperview()
+            }
+            
+        })
+        
+        self.viewAccessoryContainer.snp.updateConstraints { (make) in
+            make.width.equalTo(width)
+        }
+        
+        self.setNeedsLayout()
     }
 }
 

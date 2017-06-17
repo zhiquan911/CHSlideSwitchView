@@ -22,10 +22,11 @@ class HeaderViewNIBViewController: UIViewController {
     lazy var datas: [CHSlideItem] = {
         var items = [CHSlideItem]()
         for (i, color) in self.colors.enumerated() {
-            let item = CHSlideItem(key: i, title: "hello", content: CHSlideItemType.view({ () -> UIView in
-                let view = UIView()
-                view.backgroundColor = color
-                return view
+            let item = CHSlideItem(title: "hello", content: CHSlideItemType.viewController({
+                () -> UIViewController in
+                let story = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = story.instantiateViewController(withIdentifier: "DemoNIBViewController") as! DemoNIBViewController
+                return vc
             }))
             items.append(item)
         }
