@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CHSlideSwitchView'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of CHSlideSwitchView.'
+  s.version          = '1.0.0'
+  s.summary          = 'This a slideSwitchView for Swift 3.0.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,13 +18,13 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This a slideSwitchView for Swift 3.0.
                        DESC
 
   s.homepage         = 'https://github.com/zhiquan911/CHSlideSwitchView'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'zhiquan911' => 'zhiquan911@qq.com' }
+  s.author           = { 'Chance' => 'zhiquan911@qq.com' }
   s.source           = { :git => 'https://github.com/zhiquan911/CHSlideSwitchView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -40,3 +40,5 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'SnapKit', '~> 3.2.0'
 end
+
+#提交命令：pod trunk push CHSlideSwitchView.podspec

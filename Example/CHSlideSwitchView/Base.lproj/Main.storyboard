@@ -245,9 +245,6 @@
                             <constraint firstItem="XMz-Zr-6uQ" firstAttribute="centerY" secondItem="BlO-86-h7z" secondAttribute="centerY" id="hkt-ow-4O5"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="labelNum" destination="XMz-Zr-6uQ" id="uFR-yI-WVs"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cma-Ua-yVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -266,12 +263,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fom-kA-dVa" customClass="CHSlideSwitchView" customModule="CHSlideSwitchView">
-                                <rect key="frame" x="0.0" y="154" width="375" height="513"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isIntegrateHeaderView" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="heightOfHeaderView">
-                                        <real key="value" value="90"/>
+                                        <real key="value" value="44"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -279,10 +276,10 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zF-dh-RfR" customClass="CHSlideHeaderView" customModule="CHSlideSwitchView">
-                                <rect key="frame" x="10" y="64" width="355" height="90"/>
+                                <rect key="frame" x="10" y="64" width="355" height="44"/>
                                 <color key="backgroundColor" red="0.22051744340000001" green="1" blue="0.45846308149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="9DH-8a-m46"/>
+                                    <constraint firstAttribute="height" constant="44" id="9DH-8a-m46"/>
                                 </constraints>
                             </view>
                         </subviews>

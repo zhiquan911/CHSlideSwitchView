@@ -52,7 +52,6 @@ class DemoNIBViewController: UIViewController {
         self.slideSwitchView.delegate = self
         self.slideSwitchView.headerView?.padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 20)
         self.slideSwitchView.headerView?.layout = .center(halve: false)
-        self.slideSwitchView.headerView?.viewAccessoryWidth = 30
         self.slideSwitchView.headerView?.selectedStyle = .rectangle(cornerRadius: 13, height: 26, color: UIColor(white: 0.9, alpha: 1))
         self.slideSwitchView.cacheSize = 10
 //        self.slideSwitchView.headerView?.selectedStyle = .line(color: UIColor.red, height: 2.5)

@@ -16,7 +16,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		C5158EC81EEE2B090057A356 /* CustomerTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5158EC71EEE2B090057A356 /* CustomerTabViewController.swift */; };
 		C5158ECC1EEE2B550057A356 /* CurrencyPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5158ECA1EEE2B550057A356 /* CurrencyPriceView.swift */; };
-		C5158ECD1EEE2B550057A356 /* CurrencyPriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5158ECB1EEE2B550057A356 /* CurrencyPriceView.xib */; };
+		C5158ECD1EEE2B550057A356 /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5158ECB1EEE2B550057A356 /* CustomView.xib */; };
 		C5158ECF1EEE37FB0057A356 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5158ECE1EEE37FB0057A356 /* UIColor+extension.swift */; };
 		C5448CAB1EE3FCCE00F5B456 /* DemoSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5448CAA1EE3FCCE00F5B456 /* DemoSelectViewController.swift */; };
 		C5448CAE1EE3FD0000F5B456 /* DemoNIBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5448CAD1EE3FD0000F5B456 /* DemoNIBViewController.swift */; };
@@ -50,7 +50,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		C5158EC71EEE2B090057A356 /* CustomerTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerTabViewController.swift; sourceTree = "<group>"; };
 		C5158ECA1EEE2B550057A356 /* CurrencyPriceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPriceView.swift; sourceTree = "<group>"; };
-		C5158ECB1EEE2B550057A356 /* CurrencyPriceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyPriceView.xib; sourceTree = "<group>"; };
+		C5158ECB1EEE2B550057A356 /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 		C5158ECE1EEE37FB0057A356 /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		C5448CAA1EE3FCCE00F5B456 /* DemoSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSelectViewController.swift; sourceTree = "<group>"; };
 		C5448CAD1EE3FD0000F5B456 /* DemoNIBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoNIBViewController.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				C5158ECA1EEE2B550057A356 /* CurrencyPriceView.swift */,
-				C5158ECB1EEE2B550057A356 /* CurrencyPriceView.xib */,
+				C5158ECB1EEE2B550057A356 /* CustomView.xib */,
 			);
 			name = component;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				C5158ECD1EEE2B550057A356 /* CurrencyPriceView.xib in Resources */,
+				C5158ECD1EEE2B550057A356 /* CustomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

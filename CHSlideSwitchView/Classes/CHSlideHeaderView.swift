@@ -153,7 +153,7 @@ open class CHSlideHeaderView: UIView {
     open var tabType: CHSlideTabType = .text
     
     /// 多功能视图宽度
-    open var viewAccessoryWidth: CGFloat = 0
+    fileprivate var viewAccessoryWidth: CGFloat = 0
     
     /// 区分点击还是滑动
     open var isSelectTab: Bool = false
@@ -888,7 +888,7 @@ open class CHSlideHeaderView: UIView {
         _ = self.viewAccessoryContainer.subviews.map { $0.removeFromSuperview() }
         self.viewAccessory = view
         self.viewAccessoryContainer.addSubview(view)
-        
+        self.viewAccessoryWidth = width
         self.viewAccessory?.snp.makeConstraints({ (make) in
             make.width.equalTo(view.width)
             make.height.equalTo(view.height)

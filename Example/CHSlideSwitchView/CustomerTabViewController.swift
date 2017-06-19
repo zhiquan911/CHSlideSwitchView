@@ -16,11 +16,11 @@ class CustomerTabViewController: UIViewController {
     var datas = [CHSlideItem]()
     
     var currencyType: [String] = [
-        "BTC",
-        "LTC",
-        "ETH",
-        "ETC",
-        "BTS",
+        "新闻",
+        "视频",
+        "体育",
+        "国内",
+        "国际",
     ]
     
     override func viewDidLoad() {
@@ -28,8 +28,8 @@ class CustomerTabViewController: UIViewController {
         self.slideSwitchView.delegate = self
         self.slideSwitchView.headerView?.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.slideSwitchView.headerView?.layout = .average(max: 4)
-        self.slideSwitchView.headerView?.selectedStyle = .rectangle(cornerRadius: 35, height: 70, color: UIColor(white: 0, alpha: 0.5))
-        self.slideSwitchView.headerView?.backgroundColor = UIColor(hex: 0x2E3F53)
+        self.slideSwitchView.headerView?.selectedStyle = .rectangle(cornerRadius: 22, height: 44, color: UIColor(white: 0, alpha: 0.5))
+        self.slideSwitchView.headerView?.backgroundColor = UIColor.white
         self.slideSwitchView.headerView?.selectedScale = 1
         self.slideSwitchView.headerView?.tabType = .view
         self.initTestVCDatas()
@@ -43,10 +43,8 @@ class CustomerTabViewController: UIViewController {
     func initTestVCDatas() {
         for (i, _) in self.currencyType.enumerated() {
             
-            let tabbarItem = UIView.loadFromNibNamed("CurrencyPriceView") as! CurrencyPriceView
-            tabbarItem.labelCurrency.text = self.currencyType[i]
-            tabbarItem.labelRate.text = "10.0%"
-            tabbarItem.labelPrice.text = "￥2000.00"
+            let tabbarItem = UIView.loadFromNibNamed("CustomView") as! CustomView
+            tabbarItem.labelTab.text = self.currencyType[i]
             
             let item = CHSlideItem(tabView: tabbarItem, content: CHSlideItemType.viewController({ () -> UIViewController in
                 let story = UIStoryboard.init(name: "Main", bundle: nil)

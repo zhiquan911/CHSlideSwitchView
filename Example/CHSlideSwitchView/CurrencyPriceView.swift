@@ -8,25 +8,16 @@
 
 import UIKit
 
-class CurrencyPriceView: UIView {
+class CustomView: UIView {
 
-    @IBOutlet var labelCurrency: UILabel!
-    @IBOutlet var labelPrice: UILabel!
-    @IBOutlet var labelRate: UILabel!
-    @IBOutlet var imageViewTrend: UIImageView!
+    @IBOutlet var labelTab: UILabel!
     
-    @IBInspectable var rate: Float = 0 {
+    var title: String = "" {
         didSet {
-            self.labelRate.text = "\(rate)%"
+            self.labelTab.text = self.title
         }
     }
-    
-    @IBInspectable var currencyPrice: String = "0.0" {
-        didSet {
-            
-            self.labelPrice.text = "￥" + currencyPrice
-        }
-    }
+
 
 }
 
