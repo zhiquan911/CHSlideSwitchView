@@ -101,13 +101,14 @@ open class CHSlideSwitchView: UIView {
     
     
     /// 当前页面位置
-    fileprivate var currentIndex: Int = -1 {
-        didSet {
-            if oldValue != self.currentIndex {
-                self.headerView?.selectedTabView(at: self.currentIndex)
-            }
-        }
-    }
+    fileprivate var currentIndex: Int = -1
+//    {
+//        didSet {
+//            if oldValue != self.currentIndex {
+//                self.headerView?.selectedTabView(at: self.currentIndex)
+//            }
+//        }
+//    }
     
     // MARK: - 初始化方法
     
@@ -254,7 +255,7 @@ open class CHSlideSwitchView: UIView {
         let viewCount = self.slideItems.count
         
         //父级视图遇到大调整，清除所有子视图，如：横竖屏切换
-        for i in 0..<self.viewsCache.count {
+        for i in self.viewsCache.keys {
             self.removeViewCacheIndex(index: i)
         }
         
@@ -367,6 +368,7 @@ open class CHSlideSwitchView: UIView {
     }
     
     
+    
     /// 插入一个新的页面
     ///
     /// - Parameters:
@@ -379,31 +381,60 @@ open class CHSlideSwitchView: UIView {
             insertIndex = self.slideItems.endIndex
         }
         self.slideItems.insert(item, at: insertIndex)
-//        let current = self.currentIndex
+
         //重新加载后执行，将新加入作为当前页显示
         self.layoutSubViewsCompletedBlock = {
             () -> Void in
+            var animated = true, allowSame = false
+            var moveToIndex: Int = insertIndex
             if isSelected {
-                self.currentIndex = insertIndex
+                moveToIndex = insertIndex
+                animated = true
             } else {
-//                self.currentIndex = -1
-                self.headerView?.currentIndex = -1
-//                self.currentIndex = current
+                animated = false
                 //插入的大于当前，显示当前+1才能显示正确的页面
-                if insertIndex > self.currentIndex {
-                    
+                if self.currentIndex >= insertIndex {
+                    moveToIndex = self.currentIndex + 1
+
+                } else {
+                    moveToIndex = self.currentIndex
+
                 }
-                self.headerView?.selectedTabView(at: self.currentIndex, animated: false)
+                
             }
+            
+            //如果在当前位置中插入，不需要执行动画，允许重新选中就是
+            if self.currentIndex == moveToIndex {
+                animated = false
+                allowSame = true
+            } else {
+                allowSame = false
+            }
+            
+            
+            self.updateCurrentIndex(index: moveToIndex, animated: animated, allowSame: allowSame)
             
         }
         
-        
+        //【注意事项】每次重新加载会把原来的缓存页面清空，重新以当前索引加载页面
         self.reloadData()
-//        if isSelected { //显示到该页
-//            //滚动到当前页面
-//            self.setContentOffset(index: insertIndex, animated: true)
-//        }
+
+        
+    }
+    
+    
+    /// 更新当前位置
+    ///
+    /// - Parameters:
+    ///   - index: 新位置
+    ///   - animated: 是否执行动画
+    ///   - allowSame: 是否允许更新相同位置也执行
+    open func updateCurrentIndex(index: Int, animated: Bool = true, allowSame: Bool = false) {
+        if index != self.currentIndex {
+            self.currentIndex = index
+        }
+        
+        self.headerView?.selectedTabView(at: self.currentIndex, animated: animated, allowSame: allowSame)
         
     }
 }
@@ -433,7 +464,7 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
     public func setContentOffset(index: Int, animated: Bool) {
         if self.showIndex >= 0 {
             let point = CGPoint(x: CGFloat(index) * self.rootScrollView.width, y: 0)
-            self.setContentOffset(point, animated: true)
+            self.setContentOffset(point, animated: animated)
         }
         
         //获取当前页面是否可以继续滑动
@@ -451,7 +482,8 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
         self.rootScrollView.setContentOffset(contentOffset, animated: animated)
         
         //计算偏移到哪一页
-        self.currentIndex = Int(contentOffset.x / self.width)
+        self.updateCurrentIndex(index: Int(contentOffset.x / self.width))
+//        self.currentIndex = Int(contentOffset.x / self.width)
         self.showIndex = self.currentIndex
         _ = self.addViewCacheIndex(index: self.currentIndex)
         
@@ -484,7 +516,8 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
     /// - Parameter scrollView:
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         //计算偏移到哪一页
-        self.currentIndex = Int(scrollView.contentOffset.x / self.width)
+        self.updateCurrentIndex(index: Int(scrollView.contentOffset.x / self.width))
+//        self.currentIndex = Int(scrollView.contentOffset.x / self.width)
         if self.loadViewTiming == .normal {
             _ = self.addViewCacheIndex(index: self.currentIndex)
         }

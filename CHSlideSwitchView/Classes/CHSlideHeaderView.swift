@@ -571,13 +571,17 @@ open class CHSlideHeaderView: UIView {
     }
     
     
+    
     /// 选中某个Tab
     ///
-    /// - Parameter index: 索引位
-    open func selectedTabView(at index: Int, animated: Bool = true, isLayout: Bool = false) {
+    /// - Parameters:
+    ///   - index: 新位置
+    ///   - animated: 是否动画执行
+    ///   - allowSame: 是否允许更新相同位置也执行
+    open func selectedTabView(at index: Int, animated: Bool = true, allowSame: Bool = false) {
         
         
-        if index == self.currentIndex || index < 0 {
+        if (index == self.currentIndex && !allowSame) || index < 0 {
             
             return
         }
@@ -603,10 +607,10 @@ open class CHSlideHeaderView: UIView {
 //        self.moveSelectedView(from: before, to: self.currentIndex)
 //        UIView.commitAnimations()
         
-        self.isSelectTab = true
+        self.isSelectTab = animated
         
         //调整主视图内容
-        self.slideSwitchView?.setContentOffset(index: index, animated: true)
+        self.slideSwitchView?.setContentOffset(index: index, animated: animated)
         
         if self.slideSwitchView != nil {
             self.slideSwitchView?.delegate?.slideSwitchView?(view: self.slideSwitchView!, didSelected: self.currentIndex)

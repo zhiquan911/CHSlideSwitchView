@@ -32,11 +32,8 @@ class DemoNIBViewController: UIViewController {
         "热点国际新闻",
         "国际",
         "娱乐新闻",
-        "娱乐新闻",
-        "娱乐新闻",
-        "娱乐新闻",
-        "娱乐新闻",
-        "娱乐新闻",
+        "本地",
+        "视频",
     ]
     
     lazy var addButton: UIButton = {
@@ -57,6 +54,7 @@ class DemoNIBViewController: UIViewController {
         self.slideSwitchView.headerView?.layout = .center(halve: false)
         self.slideSwitchView.headerView?.viewAccessoryWidth = 30
         self.slideSwitchView.headerView?.selectedStyle = .rectangle(cornerRadius: 13, height: 26, color: UIColor(white: 0.9, alpha: 1))
+        self.slideSwitchView.cacheSize = 10
 //        self.slideSwitchView.headerView?.selectedStyle = .line(color: UIColor.red, height: 2.5)
         self.initTestVCDatas()
 //        self.initTestViewDatas()
@@ -84,7 +82,8 @@ class DemoNIBViewController: UIViewController {
         for (i, _) in self.titles.enumerated() {
             let item = CHSlideItem(title: titles[i], content: CHSlideItemType.viewController({ () -> UIViewController in
                 let story = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = story.instantiateViewController(withIdentifier: "DemoSelectViewController") as! DemoSelectViewController
+                let vc = story.instantiateViewController(withIdentifier: "DemoSubViewController") as! DemoSubViewController
+                vc.num = "\(i)"
                 return vc
             }))
             self.datas.append(item)
@@ -108,11 +107,12 @@ class DemoNIBViewController: UIViewController {
     @IBAction func handleAddNewTabPress(sender: AnyObject?) {
         let item = CHSlideItem(title: "体育新闻", content: CHSlideItemType.viewController({ () -> UIViewController in
             let story = UIStoryboard.init(name: "Main", bundle: nil)
-            let vc = story.instantiateViewController(withIdentifier: "DemoSelectViewController") as! DemoSelectViewController
+            let vc = story.instantiateViewController(withIdentifier: "DemoSubViewController") as! DemoSubViewController
+            vc.num = "2-体育新闻"
             return vc
         }))
         
-        self.slideSwitchView.insertTab(item: item, at: 2, isSelected: false)
+        self.slideSwitchView.insertTab(item: item, at: 2, isSelected: true)
     }
 }
 

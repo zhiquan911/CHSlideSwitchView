@@ -9,11 +9,14 @@
 import UIKit
 
 class DemoSubViewController: UIViewController {
+    
+    @IBOutlet var labelNum: UILabel!
+    
+    var num: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.labelNum.text = num
     }
 
 }
