@@ -245,6 +245,9 @@
                             <constraint firstItem="XMz-Zr-6uQ" firstAttribute="centerY" secondItem="BlO-86-h7z" secondAttribute="centerY" id="hkt-ow-4O5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="labelNum" destination="XMz-Zr-6uQ" id="tg5-Ae-xQu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cma-Ua-yVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-This a slideSwitchView for Swift 3.0.
+这是一个Swift3.0的开源库，滑动标签组件库，像《网易新闻》，《今日头条》的标签栏。
                        DESC
 
   s.homepage         = 'https://github.com/zhiquan911/CHSlideSwitchView'

@@ -320,7 +320,7 @@ open class CHSlideHeaderView: UIView {
             
             if halve {
                 // 计算居中的起点
-                startX = self.scrollWidth / 2
+                startX = self.width / 2
                 
                 
                 for i in 0..<tabViews.count / 2 {
@@ -334,7 +334,7 @@ open class CHSlideHeaderView: UIView {
                 
             } else {
                 // 计算居中的起点
-                startX = (self.scrollWidth - self.totalTabWidth) / 2
+                startX = (self.width - self.totalTabWidth) / 2
                 
             }
             
