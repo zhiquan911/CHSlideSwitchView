@@ -430,7 +430,18 @@ open class CHSlideSwitchView: UIView {
     ///   - animated: 是否执行动画
     ///   - allowSame: 是否允许更新相同位置也执行
     open func updateCurrentIndex(index: Int, animated: Bool = true, allowSame: Bool = false) {
+        
         if index != self.currentIndex {
+            
+            if let vc = self.viewsCache[self.currentIndex] as? CHSlideSwitchSubViewDelegate {
+                vc.subViewDidDisappear?(parent: self)
+//                NSLog("\(vc) subViewDidDisappear")
+            }
+            if let vc = self.viewsCache[index] as? CHSlideSwitchSubViewDelegate {
+                vc.subViewDidAppear?(parent: self)
+//                NSLog("\(vc) subViewDidAppear")
+            }
+            
             self.currentIndex = index
         }
         

@@ -38,3 +38,15 @@ public protocol CHSlideSwitchViewDelegate: class {
     @objc optional func slideSwitchView(view: CHSlideSwitchView, canSwipeScroll atIndex: Int) -> Bool
     
 }
+
+
+/// 子视图的协议，用于回调给子视图的【出现】【消失】两种业务处理情况
+@objc
+public protocol CHSlideSwitchSubViewDelegate: class {
+    
+    /// 子视图出现
+    @objc optional func subViewDidAppear(parent: CHSlideSwitchView)
+    
+    /// 子视图消失
+    @objc optional func subViewDidDisappear(parent: CHSlideSwitchView)
+}

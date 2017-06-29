@@ -98,4 +98,18 @@ public extension UIView {
     public var ch_slideSwitchView: CHSlideSwitchView? {
         return self.superview as? CHSlideSwitchView
     }
+    
+    /// 寻找View所属的controller
+    ///
+    /// - returns:
+    func ch_controller() -> UIViewController? {
+        var father = self.superview
+        while father != nil {
+            if let nextResponder = father?.next, nextResponder is UIViewController {
+                return nextResponder as? UIViewController
+            }
+            father = father?.superview
+        }
+        return nil
+    }
 }
