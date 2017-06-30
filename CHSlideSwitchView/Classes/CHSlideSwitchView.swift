@@ -110,6 +110,7 @@ open class CHSlideSwitchView: UIView {
 //        }
 //    }
     
+    
     // MARK: - 初始化方法
     
     public override init(frame: CGRect) {
@@ -231,6 +232,23 @@ open class CHSlideSwitchView: UIView {
         /// 设置数据源
         let viewCount = self.setDataSources()
         
+        //调整子视图布局
+        for (index, obj) in self.viewsCache {
+            
+            var targetView: UIView?
+            
+            switch obj {
+            case let view as UIView:
+                targetView = view
+            case let vc as UIViewController:
+                targetView = vc.view
+            default:break
+            }
+            
+            targetView?.frame = CGRect(x: CGFloat(index) * self.width, y: 0, width: self.width, height: self.height)
+            
+        }
+        
         self.rootScrollView.contentSize = CGSize(width: CGFloat(viewCount) * self.width, height: self.scrollHeight)
         
         
@@ -255,9 +273,9 @@ open class CHSlideSwitchView: UIView {
         let viewCount = self.slideItems.count
         
         //父级视图遇到大调整，清除所有子视图，如：横竖屏切换
-        for i in self.viewsCache.keys {
-            self.removeViewCacheIndex(index: i)
-        }
+//        for i in self.viewsCache.keys {
+//            self.removeViewCacheIndex(index: i)
+//        }
         
         if viewCount > 0 {
             
@@ -287,10 +305,11 @@ open class CHSlideSwitchView: UIView {
                 
             }
             
-            //更新头部
-            self.headerView?.slideItems = self.slideItems
-            self.headerView?.reloadTabs()
             
+            
+            //更新头部
+            self.headerView?.reloadTabs(items: self.slideItems)
+
         }
         
         return viewCount
@@ -380,7 +399,21 @@ open class CHSlideSwitchView: UIView {
         if index == -1 || index > self.slideItems.count {
             insertIndex = self.slideItems.endIndex
         }
+        
         self.slideItems.insert(item, at: insertIndex)
+        
+        //缓存页面组，需要重新排列插入后的索引
+        let endIndex = self.slideItems.count - 1
+        for i in stride(from: endIndex - 1, through: insertIndex, by: -1) {
+            if let tmp = self.viewsCache[i] {
+                //右移进一
+                self.viewsCache[i+1] = tmp
+                //右移完成，移出当前位
+                self.viewsCache.removeValue(forKey: i)
+            }
+            
+        }
+        
 
         //重新加载后执行，将新加入作为当前页显示
         self.layoutSubViewsCompletedBlock = {

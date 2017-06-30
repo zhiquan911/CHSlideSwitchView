@@ -241,7 +241,28 @@ open class CHSlideHeaderView: UIView {
     }
     
     /// 重新加载tab
-    open func reloadTabs() {
+    open func reloadTabs(items: [CHSlideItem]) {
+        
+        var isEqual: Bool = true
+        
+        if items.count == self.slideItems.count {
+            for (i, item) in items.enumerated() {
+                if item.title != self.slideItems[i].title {
+                    isEqual = false
+                    break
+                }
+            }
+        } else {
+            isEqual = false
+        }
+        
+        //不相等才做重置
+        guard isEqual == false else {
+            return
+        }
+        
+        self.slideItems = items
+        
         let tabCount = self.slideItems.count
         
         // 【一】先清空所有滚动视图的子视图

@@ -52,6 +52,7 @@ extension DemoSelectViewController: UITableViewDataSource, UITableViewDelegate {
         let story = UIStoryboard.init(name: "Main", bundle: nil)
         let name = self.demoVC[indexPath.row]
         let vc = story.instantiateViewController(withIdentifier: name)
+        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
