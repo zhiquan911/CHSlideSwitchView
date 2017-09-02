@@ -295,6 +295,11 @@ open class CHSlideHeaderView: UIView {
         
         if self.currentIndex >= 0 {
             
+            //如果当前索引溢出，选择中最后一个tab显示
+            if self.currentIndex > self.viewTabs.count - 1 {
+                self.currentIndex = self.viewTabs.count - 1
+            }
+            
             //添加选中视图
             if self.selectedView == nil {
                 self.selectedView = self.createSelectedView()
@@ -647,7 +652,7 @@ open class CHSlideHeaderView: UIView {
     ///   - to: 结束位置
     open func moveSelectedView(from: Int, to: Int) {
         
-        if from >= 0 {
+        if from >= 0 && from < self.viewTabs.count {
             
             let fromView = self.viewTabs[from]
             

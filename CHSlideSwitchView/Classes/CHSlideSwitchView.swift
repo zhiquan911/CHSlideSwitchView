@@ -47,11 +47,18 @@ open class CHSlideSwitchView: UIView {
     public var rootScrollView: UIScrollView!
     
     /// 内容元素组
-    open var slideItems: [CHSlideItem] = [CHSlideItem]() {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
+    open var slideItems: [CHSlideItem] = [CHSlideItem]()
+//    {
+//        didSet {
+//            
+//            //数组重置，清除所有子视图
+//            for i in self.viewsCache.keys {
+//                self.removeViewCacheIndex(index: i)
+//            }
+//            
+//            self.setNeedsLayout()
+//        }
+//    }
     
     /// 初始化显示页签位置
     open var showIndex: Int = 0
@@ -260,6 +267,28 @@ open class CHSlideSwitchView: UIView {
     /// 重新加载数据
     open func reloadData() {
         
+        //数组重置，清除所有子视图
+        for i in self.viewsCache.keys {
+            self.removeViewCacheIndex(index: i)
+        }
+        
+        //初始化完成后执行
+        self.layoutSubViewsCompletedBlock = {
+            () -> Void in
+            //是否加载全部页面
+            if !self.loadAll && self.self.slideItems.count > 0 {
+                
+                //如果当前索引溢出，选择中最后一个tab显示
+                if self.currentIndex > self.slideItems.count - 1 {
+                    self.showIndex = self.slideItems.count - 1
+                }
+                
+                //只加载显示的当前页面
+                self.setContentOffset(index: self.showIndex, animated: false)
+                self.headerView?.isSelectTab = false
+            }
+        }
+        
         //刷新子视图布局
         self.setNeedsLayout()
         
@@ -449,8 +478,8 @@ open class CHSlideSwitchView: UIView {
             
         }
         
-        //【注意事项】每次重新加载会把原来的缓存页面清空，重新以当前索引加载页面
-        self.reloadData()
+        //重新调整布局
+        self.setNeedsLayout()
 
         
     }

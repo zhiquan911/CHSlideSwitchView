@@ -13,6 +13,17 @@ class CustomerTabViewController: UIViewController {
 
     @IBOutlet var slideSwitchView: CHSlideSwitchView!
     
+    lazy var deleteButton: UIButton = {
+        let btn = UIButton(type: UIButtonType.custom)
+        btn.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 30, height: 26))
+        btn.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        btn.layer.cornerRadius = 13
+        btn.setTitle("-", for: .normal)
+        btn.setTitleColor(UIColor.black, for: .normal)
+        btn.addTarget(self, action: #selector(self.handleDeleteTabPress(sender:)), for: UIControlEvents.touchUpInside)
+        return btn
+    }()
+    
     var datas = [CHSlideItem]()
     
     var currencyType: [String] = [
@@ -36,6 +47,8 @@ class CustomerTabViewController: UIViewController {
         //        self.initTestViewDatas()
         
         self.slideSwitchView.slideItems = self.datas
+        
+        self.slideSwitchView.headerView?.setAccessoryView(view: self.deleteButton, width: 50)
     }
     
     
@@ -46,15 +59,43 @@ class CustomerTabViewController: UIViewController {
             let tabbarItem = UIView.loadFromNibNamed("CustomView") as! CustomView
             tabbarItem.labelTab.text = self.currencyType[i]
             
+//            let item = CHSlideItem(tabView: tabbarItem, content: CHSlideItemType.viewController({ () -> UIViewController in
+//                let story = UIStoryboard.init(name: "Main", bundle: nil)
+//                let vc = story.instantiateViewController(withIdentifier: "DemoSelectViewController") as! DemoSelectViewController
+//                return vc
+//            }))
+            
             let item = CHSlideItem(tabView: tabbarItem, content: CHSlideItemType.viewController({ () -> UIViewController in
                 let story = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = story.instantiateViewController(withIdentifier: "DemoSelectViewController") as! DemoSelectViewController
+                let vc = story.instantiateViewController(withIdentifier: "DemoSubViewController") as! DemoSubViewController
+                vc.num = "\(i)"
                 return vc
             }))
+            
             self.datas.append(item)
         }
     }
 
+    
+    /// 删除Tab
+    ///
+    /// - Parameter sender:
+    @IBAction func handleDeleteTabPress(sender: AnyObject?) {
+        self.datas.removeAll()
+        
+        let tabbarItem = UIView.loadFromNibNamed("CustomView") as! CustomView
+        tabbarItem.labelTab.text = "最后一个"
+        
+        let item = CHSlideItem(tabView: tabbarItem, content: CHSlideItemType.viewController({ () -> UIViewController in
+            let story = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = story.instantiateViewController(withIdentifier: "DemoSubViewController") as! DemoSubViewController
+            vc.num = "最后一个"
+            return vc
+        }))
+        self.datas.append(item)
+        self.slideSwitchView.slideItems = self.datas
+        self.slideSwitchView.reloadData()
+    }
 }
 
 extension CustomerTabViewController: CHSlideSwitchViewDelegate {
