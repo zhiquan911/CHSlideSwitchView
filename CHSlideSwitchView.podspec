@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CHSlideSwitchView'
-  s.version          = '1.0.0'
-  s.summary          = 'This a slideSwitchView for Swift 3.0.'
+  s.version          = '1.0.1'
+  s.summary          = 'This a slideSwitchView for Swift 3.0+.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'SnapKit', '~> 3.2.0'
+  s.dependency 'SnapKit', '~> 4.0.0'
 end
 
 #提交命令：pod trunk push CHSlideSwitchView.podspec

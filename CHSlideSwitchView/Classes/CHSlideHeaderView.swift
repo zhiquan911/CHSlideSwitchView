@@ -186,6 +186,12 @@ open class CHSlideHeaderView: UIView {
         self.createUI()
     }
     
+    // 重写intrinsicContentSize兼容iOS11
+    // https://www.2cto.com/kf/201709/684213.html
+    override open var intrinsicContentSize: CGSize {
+        return UILayoutFittingExpandedSize
+    }
+    
     
     /// 创建UI
     open func createUI() {
@@ -527,11 +533,11 @@ open class CHSlideHeaderView: UIView {
             var textSize: CGSize!
             let newStr = NSString(string: text)
             if size.equalTo(CGSize.zero) {
-                let attributes = [NSFontAttributeName: font]
-                textSize = newStr.size(attributes: attributes)
+                let attributes = [NSAttributedStringKey.font: font]
+                textSize = newStr.size(withAttributes: attributes)
             } else {
                 let option = NSStringDrawingOptions.usesLineFragmentOrigin
-                let attributes = [NSFontAttributeName: font]
+                let attributes = [NSAttributedStringKey.font: font]
                 let stringRect = newStr.boundingRect(with: size, options: option, attributes: attributes, context: nil)
                 textSize = stringRect.size
             }
@@ -580,7 +586,7 @@ open class CHSlideHeaderView: UIView {
     /// 处理Tab按钮点击事件
     ///
     /// - Parameter tap:
-    func handleTabViewPress(sender: AnyObject?) {
+    @objc func handleTabViewPress(sender: AnyObject?) {
         var index: Int = -1
         switch sender {
         case let btn as UIButton:

@@ -223,7 +223,7 @@ open class CHSlideSwitchView: UIView {
     
     
     /// 布局完成后通知执行的方法
-    func layoutSubviewsCompleted() {
+    @objc func layoutSubviewsCompleted() {
         self.layoutSubViewsCompletedBlock?()
         self.layoutSubViewsCompletedBlock = nil //清空执行
     }
@@ -517,7 +517,7 @@ open class CHSlideSwitchView: UIView {
 extension CHSlideSwitchView: UIScrollViewDelegate {
     
     
-    func scrollHandlePan(pan: UIPanGestureRecognizer) {
+    @objc func scrollHandlePan(pan: UIPanGestureRecognizer) {
 
         //当滑道左边界时，传递滑动事件给代理
         if self.rootScrollView.contentOffset.x <= 0 {
