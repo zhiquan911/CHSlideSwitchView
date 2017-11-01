@@ -39,7 +39,7 @@ class CustomerTabViewController: UIViewController {
         self.slideSwitchView.delegate = self
         self.slideSwitchView.headerView?.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.slideSwitchView.headerView?.layout = .average(max: 4)
-        self.slideSwitchView.headerView?.selectedStyle = .rectangle(cornerRadius: 22, height: 44, color: UIColor(white: 0, alpha: 0.5))
+        self.slideSwitchView.headerView?.selectedStyle = .base
         self.slideSwitchView.headerView?.backgroundColor = UIColor.white
         self.slideSwitchView.headerView?.selectedScale = 1
         self.slideSwitchView.headerView?.tabType = .view
@@ -120,6 +120,14 @@ extension CustomerTabViewController: CHSlideSwitchViewDelegate {
     ///   - atIndex: 点击位置
     func slideSwitchView(view: CHSlideSwitchView, didSelected atIndex: Int) {
         NSLog("didSelected : \(atIndex)")
+        
+        _ = self.slideSwitchView.slideItems.map {
+            let view = $0.tabView as! CustomView
+            view.selected = false
+        }
+        
+        let itemView = self.slideSwitchView.slideItems[atIndex].tabView as! CustomView
+        itemView.selected = true
     }
     
     
