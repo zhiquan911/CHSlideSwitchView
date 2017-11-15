@@ -46,6 +46,7 @@ class CustomerTabViewController: UIViewController {
         self.slideSwitchView.slideItems = self.datas
         
         self.slideSwitchView.headerView?.setAccessoryView(view: self.deleteButton, width: 50)
+
     }
     
     
@@ -103,9 +104,8 @@ class CustomerTabViewController: UIViewController {
         self.datas.append(item2)
         
         self.slideSwitchView.slideItems = self.datas
-        self.slideSwitchView.showIndex = 1
         self.slideSwitchView.reloadData()
-        
+//        self.slideSwitchView.updateCurrentIndex(index: 0, animated: false, allowSame: true)
     }
 }
 
