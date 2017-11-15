@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'SnapKit', '~> 4.0.0'
+  s.dependency 'SnapKit', '~> 3.2.0'
 end
 
 #提交命令：pod trunk push CHSlideSwitchView.podspec

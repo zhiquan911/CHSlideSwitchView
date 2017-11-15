@@ -253,10 +253,22 @@ open class CHSlideHeaderView: UIView {
         
         if items.count == self.slideItems.count {
             for (i, item) in items.enumerated() {
-                if item.title != self.slideItems[i].title {
-                    isEqual = false
-                    break
+                
+                switch self.tabType {
+                    
+                case .text:
+                    if item.title != self.slideItems[i].title {
+                        isEqual = false
+                        break
+                    }
+                case .view:
+                    if item.tabView !== self.slideItems[i].tabView {
+                        isEqual = false
+                        break
+                    }
                 }
+                
+                
             }
         } else {
             isEqual = false
@@ -533,11 +545,11 @@ open class CHSlideHeaderView: UIView {
             var textSize: CGSize!
             let newStr = NSString(string: text)
             if size.equalTo(CGSize.zero) {
-                let attributes = [NSAttributedStringKey.font: font]
-                textSize = newStr.size(withAttributes: attributes)
+                let attributes = [NSFontAttributeName: font]
+                textSize = newStr.size(attributes: attributes)
             } else {
                 let option = NSStringDrawingOptions.usesLineFragmentOrigin
-                let attributes = [NSAttributedStringKey.font: font]
+                let attributes = [NSFontAttributeName: font]
                 let stringRect = newStr.boundingRect(with: size, options: option, attributes: attributes, context: nil)
                 textSize = stringRect.size
             }
