@@ -1,7 +1,7 @@
 PODS:
-  - CHSlideSwitchView (1.0.1):
-    - SnapKit (~> 3.2.0)
-  - SnapKit (3.2.0)
+  - CHSlideSwitchView (1.0.3):
+    - SnapKit (~> 4.0.0)
+  - SnapKit (4.0.0)
 
 DEPENDENCIES:
   - CHSlideSwitchView (from `../`)
@@ -11,9 +11,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  CHSlideSwitchView: 781673a9431b0c87b73f9d3414c3c11f96dde2de
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  CHSlideSwitchView: eabaf17a7056ed85b5ed222687fb77aa631cb198
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
 PODFILE CHECKSUM: 4918279a124d1ee6489bc0e0da5c1b214d51322b
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
