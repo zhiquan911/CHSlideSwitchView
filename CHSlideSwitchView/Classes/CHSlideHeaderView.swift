@@ -544,12 +544,13 @@ open class CHSlideHeaderView: UIView {
             let size = CGSize(width: CGFloat(MAXFLOAT), height: self.height)
             var textSize: CGSize!
             let newStr = NSString(string: text)
+
+            let attributes = [NSAttributedStringKey.font: font]
+            
             if size.equalTo(CGSize.zero) {
-                let attributes = [NSFontAttributeName: font]
-                textSize = newStr.size(attributes: attributes)
+                textSize = newStr.size(withAttributes: attributes)
             } else {
                 let option = NSStringDrawingOptions.usesLineFragmentOrigin
-                let attributes = [NSFontAttributeName: font]
                 let stringRect = newStr.boundingRect(with: size, options: option, attributes: attributes, context: nil)
                 textSize = stringRect.size
             }
