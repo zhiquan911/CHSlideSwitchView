@@ -253,10 +253,22 @@ open class CHSlideHeaderView: UIView {
         
         if items.count == self.slideItems.count {
             for (i, item) in items.enumerated() {
-                if item.title != self.slideItems[i].title {
-                    isEqual = false
-                    break
+                
+                switch self.tabType {
+                    
+                case .text:
+                    if item.title != self.slideItems[i].title {
+                        isEqual = false
+                        break
+                    }
+                case .view:
+                    if item.tabView !== self.slideItems[i].tabView {
+                        isEqual = false
+                        break
+                    }
                 }
+                
+                
             }
         } else {
             isEqual = false

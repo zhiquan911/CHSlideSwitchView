@@ -29,9 +29,6 @@ class CustomerTabViewController: UIViewController {
     var currencyType: [String] = [
         "新闻",
         "视频",
-        "体育",
-        "国内",
-        "国际",
     ]
     
     override func viewDidLoad() {
@@ -93,8 +90,22 @@ class CustomerTabViewController: UIViewController {
             return vc
         }))
         self.datas.append(item)
+        
+        let tabbarItem2 = UIView.loadFromNibNamed("CustomView") as! CustomView
+        tabbarItem2.labelTab.text = "最后2个"
+        
+        let item2 = CHSlideItem(tabView: tabbarItem2, content: CHSlideItemType.viewController({ () -> UIViewController in
+            let story = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = story.instantiateViewController(withIdentifier: "DemoSubViewController") as! DemoSubViewController
+            vc.num = "最后2个"
+            return vc
+        }))
+        self.datas.append(item2)
+        
         self.slideSwitchView.slideItems = self.datas
+        self.slideSwitchView.showIndex = 1
         self.slideSwitchView.reloadData()
+        
     }
 }
 
