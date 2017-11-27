@@ -120,8 +120,13 @@ open class CHSlideSwitchView: UIView {
     
     // MARK: - 初始化方法
     
-    public override init(frame: CGRect) {
+    public convenience override init(frame: CGRect) {
+        self.init(frame: frame, integrateHeader: true)
+    }
+    
+    public init(frame: CGRect, integrateHeader: Bool = true) {
         super.init(frame: frame)
+        self.isIntegrateHeaderView = integrateHeader
         self.addNotification()
         self.createUI()
     }
@@ -205,6 +210,9 @@ open class CHSlideSwitchView: UIView {
                 //只加载显示的当前页面
                 self.setContentOffset(index: self.showIndex, animated: false)
                 self.headerView?.isSelectTab = false
+            } else {
+                //偏移到显示的默认页面
+                self.updateCurrentIndex(index: self.showIndex, allowSame: true)
             }
         }
     }

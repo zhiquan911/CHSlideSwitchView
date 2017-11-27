@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5b4-B0-BVq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5b4-B0-BVq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,6 +43,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l0T-Im-JzQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-100" y="866"/>
+        </scene>
+        <!--Bottom Header View Controller-->
+        <scene sceneID="gCm-KE-BJb">
+            <objects>
+                <viewController storyboardIdentifier="BottomHeaderViewController" id="5Sp-Tw-Q17" customClass="BottomHeaderViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pwo-AN-1UR"/>
+                        <viewControllerLayoutGuide type="bottom" id="J2q-rX-N7z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="McM-Xb-wJ0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tkU-Pt-uRW">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="dae-Px-rgN"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Show" id="AaW-Zv-G9s">
+                                        <connections>
+                                            <action selector="handleShowWithSender:" destination="5Sp-Tw-Q17" id="n9t-c7-c6f"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J2q-rX-N7z" firstAttribute="top" secondItem="tkU-Pt-uRW" secondAttribute="bottom" id="GcB-xg-M4H"/>
+                            <constraint firstAttribute="trailing" secondItem="tkU-Pt-uRW" secondAttribute="trailing" id="H11-kS-OsF"/>
+                            <constraint firstItem="tkU-Pt-uRW" firstAttribute="leading" secondItem="McM-Xb-wJ0" secondAttribute="leading" id="cPU-F1-uoD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="toolbar" destination="tkU-Pt-uRW" id="iNP-kL-T3c"/>
+                        <outlet property="toolbarBottomConstraint" destination="GcB-xg-M4H" id="nf5-kj-J7u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uh5-oD-Pqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="1588"/>
         </scene>
         <!--Demo Select View Controller-->
         <scene sceneID="Y4x-l4-wHn">
