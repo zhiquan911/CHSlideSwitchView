@@ -211,8 +211,11 @@ open class CHSlideSwitchView: UIView {
                 self.setContentOffset(index: self.showIndex, animated: false)
                 self.headerView?.isSelectTab = false
             } else {
-                //偏移到显示的默认页面
-                self.updateCurrentIndex(index: self.showIndex, allowSame: true)
+                //在页面加载有内容时，偏移到显示的默认页面。
+                if self.viewsCache.count > 0 {
+                    self.updateCurrentIndex(index: self.showIndex, allowSame: true)
+                }
+                
             }
         }
     }
