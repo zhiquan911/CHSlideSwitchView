@@ -572,9 +572,9 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
     ///   - animated: 是否执行动画
     public func setContentOffset(_ contentOffset: CGPoint, animated: Bool, allowSame: Bool = false) {
         self.rootScrollView.setContentOffset(contentOffset, animated: animated)
-        
+        let index = lround(Double(contentOffset.x / self.width))
         //计算偏移到哪一页
-        self.updateCurrentIndex(index: Int(contentOffset.x / self.width), allowSame: allowSame)
+        self.updateCurrentIndex(index: index, allowSame: allowSame)
 //        self.currentIndex = Int(contentOffset.x / self.width)
         self.showIndex = self.currentIndex
         _ = self.addViewCacheIndex(index: self.currentIndex)
@@ -612,7 +612,8 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
     /// - Parameter scrollView:
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         //计算偏移到哪一页
-        self.updateCurrentIndex(index: Int(scrollView.contentOffset.x / self.width))
+        let index = lround(Double(scrollView.contentOffset.x / self.width))
+        self.updateCurrentIndex(index: index)
 //        self.currentIndex = Int(scrollView.contentOffset.x / self.width)
         if self.loadViewTiming == .normal {
             _ = self.addViewCacheIndex(index: self.currentIndex)
