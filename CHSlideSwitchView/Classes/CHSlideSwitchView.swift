@@ -185,7 +185,7 @@ open class CHSlideSwitchView: UIView {
         self.rootScrollView = UIScrollView()
         self.addSubview(self.rootScrollView)
         
-        self.rootScrollView.backgroundColor = UIColor.white
+        self.rootScrollView.backgroundColor = self.backgroundColor
         self.rootScrollView.delegate = self
         self.rootScrollView.isPagingEnabled = true
         self.rootScrollView.isUserInteractionEnabled = true
