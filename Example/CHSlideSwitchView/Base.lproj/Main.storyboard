@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5b4-B0-BVq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5b4-B0-BVq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,10 +49,6 @@
         <scene sceneID="gCm-KE-BJb">
             <objects>
                 <viewController storyboardIdentifier="BottomHeaderViewController" id="5Sp-Tw-Q17" customClass="BottomHeaderViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pwo-AN-1UR"/>
-                        <viewControllerLayoutGuide type="bottom" id="J2q-rX-N7z"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="McM-Xb-wJ0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,10 +69,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="J2q-rX-N7z" firstAttribute="top" secondItem="tkU-Pt-uRW" secondAttribute="bottom" id="GcB-xg-M4H"/>
-                            <constraint firstAttribute="trailing" secondItem="tkU-Pt-uRW" secondAttribute="trailing" id="H11-kS-OsF"/>
-                            <constraint firstItem="tkU-Pt-uRW" firstAttribute="leading" secondItem="McM-Xb-wJ0" secondAttribute="leading" id="cPU-F1-uoD"/>
+                            <constraint firstItem="ose-3a-8tn" firstAttribute="bottom" secondItem="tkU-Pt-uRW" secondAttribute="bottom" id="GcB-xg-M4H"/>
+                            <constraint firstItem="ose-3a-8tn" firstAttribute="trailing" secondItem="tkU-Pt-uRW" secondAttribute="trailing" id="H11-kS-OsF"/>
+                            <constraint firstItem="tkU-Pt-uRW" firstAttribute="leading" secondItem="ose-3a-8tn" secondAttribute="leading" id="cPU-F1-uoD"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ose-3a-8tn"/>
                     </view>
                     <connections>
                         <outlet property="toolbar" destination="tkU-Pt-uRW" id="iNP-kL-T3c"/>
@@ -90,10 +88,6 @@
         <scene sceneID="Y4x-l4-wHn">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="bt3-B5-29v" customClass="DemoSelectViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="S72-cm-Xrd"/>
-                        <viewControllerLayoutGuide type="bottom" id="Amh-BE-vNv"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="S7g-j6-2vL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,11 +103,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Amh-BE-vNv" firstAttribute="top" secondItem="SRh-PJ-N4U" secondAttribute="bottom" id="MwW-OO-eAS"/>
-                            <constraint firstAttribute="trailing" secondItem="SRh-PJ-N4U" secondAttribute="trailing" id="jk4-q3-mxO"/>
-                            <constraint firstItem="SRh-PJ-N4U" firstAttribute="leading" secondItem="S7g-j6-2vL" secondAttribute="leading" id="nDs-k6-ynw"/>
-                            <constraint firstItem="SRh-PJ-N4U" firstAttribute="top" secondItem="S72-cm-Xrd" secondAttribute="bottom" id="xj0-tm-NGR"/>
+                            <constraint firstItem="XEq-Yo-pWu" firstAttribute="bottom" secondItem="SRh-PJ-N4U" secondAttribute="bottom" id="MwW-OO-eAS"/>
+                            <constraint firstItem="XEq-Yo-pWu" firstAttribute="trailing" secondItem="SRh-PJ-N4U" secondAttribute="trailing" id="jk4-q3-mxO"/>
+                            <constraint firstItem="SRh-PJ-N4U" firstAttribute="leading" secondItem="XEq-Yo-pWu" secondAttribute="leading" id="nDs-k6-ynw"/>
+                            <constraint firstItem="SRh-PJ-N4U" firstAttribute="top" secondItem="XEq-Yo-pWu" secondAttribute="top" id="xj0-tm-NGR"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="XEq-Yo-pWu"/>
                     </view>
                     <navigationItem key="navigationItem" id="88i-GL-5fa"/>
                     <connections>
@@ -128,16 +123,12 @@
         <scene sceneID="n6z-Yt-y2o">
             <objects>
                 <viewController storyboardIdentifier="HeaderViewNIBViewController" id="g0N-wN-mWX" customClass="HeaderViewNIBViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3GQ-rI-JPv"/>
-                        <viewControllerLayoutGuide type="bottom" id="rFK-c9-iuZ"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="g1o-e2-LXe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-kH-9HD" customClass="CHSlideSwitchView" customModule="CHSlideSwitchView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-kH-9HD" customClass="CHSlideSwitchView" customModule="CHSlideSwitchView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isIntegrateHeaderView" value="NO"/>
@@ -149,11 +140,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="NIe-kH-9HD" secondAttribute="trailing" id="4hM-Bu-rFc"/>
-                            <constraint firstAttribute="bottom" secondItem="NIe-kH-9HD" secondAttribute="bottom" id="GBe-Oj-otW"/>
-                            <constraint firstItem="NIe-kH-9HD" firstAttribute="top" secondItem="3GQ-rI-JPv" secondAttribute="bottom" id="RbM-og-OS9"/>
-                            <constraint firstItem="NIe-kH-9HD" firstAttribute="leading" secondItem="g1o-e2-LXe" secondAttribute="leading" id="XuS-gO-uhy"/>
+                            <constraint firstItem="NIe-kH-9HD" firstAttribute="trailing" secondItem="lXT-eW-yqr" secondAttribute="trailing" id="6wS-BH-llf"/>
+                            <constraint firstItem="NIe-kH-9HD" firstAttribute="top" secondItem="lXT-eW-yqr" secondAttribute="top" id="JEn-bf-415"/>
+                            <constraint firstItem="NIe-kH-9HD" firstAttribute="bottom" secondItem="lXT-eW-yqr" secondAttribute="bottom" id="K3Y-1I-sVr"/>
+                            <constraint firstItem="NIe-kH-9HD" firstAttribute="leading" secondItem="lXT-eW-yqr" secondAttribute="leading" id="n98-vr-Mod"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="lXT-eW-yqr"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="GVS-0i-iWz">
@@ -193,10 +185,6 @@
         <scene sceneID="3gN-WX-mGj">
             <objects>
                 <viewController storyboardIdentifier="DemoSelectViewController" automaticallyAdjustsScrollViewInsets="NO" id="oHI-ci-9Jk" customClass="DemoSelectViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wvX-pe-zqc"/>
-                        <viewControllerLayoutGuide type="bottom" id="sed-Jj-3f8"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GT4-o4-M8v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -212,11 +200,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Ngk-JF-q90" secondAttribute="trailing" id="3HB-qg-zsG"/>
-                            <constraint firstItem="Ngk-JF-q90" firstAttribute="top" secondItem="wvX-pe-zqc" secondAttribute="bottom" id="ELb-q3-6Z8"/>
-                            <constraint firstItem="sed-Jj-3f8" firstAttribute="top" secondItem="Ngk-JF-q90" secondAttribute="bottom" id="Kwd-VR-H7X"/>
-                            <constraint firstItem="Ngk-JF-q90" firstAttribute="leading" secondItem="GT4-o4-M8v" secondAttribute="leading" id="XW5-ew-ya2"/>
+                            <constraint firstItem="9j0-CF-fbL" firstAttribute="trailing" secondItem="Ngk-JF-q90" secondAttribute="trailing" id="3HB-qg-zsG"/>
+                            <constraint firstItem="Ngk-JF-q90" firstAttribute="top" secondItem="9j0-CF-fbL" secondAttribute="top" id="ELb-q3-6Z8"/>
+                            <constraint firstItem="9j0-CF-fbL" firstAttribute="bottom" secondItem="Ngk-JF-q90" secondAttribute="bottom" id="Kwd-VR-H7X"/>
+                            <constraint firstItem="Ngk-JF-q90" firstAttribute="leading" secondItem="9j0-CF-fbL" secondAttribute="leading" id="XW5-ew-ya2"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="9j0-CF-fbL"/>
                     </view>
                     <navigationItem key="navigationItem" id="eIp-Lm-N3o"/>
                     <connections>
@@ -234,10 +223,6 @@
         <scene sceneID="fJ2-JC-hEN">
             <objects>
                 <viewController storyboardIdentifier="DemoNIBViewController" id="sNI-We-qu7" customClass="DemoNIBViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="elD-m0-xUm"/>
-                        <viewControllerLayoutGuide type="bottom" id="KZ6-tN-nBF"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HQM-H8-V34">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,11 +234,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="TYi-RC-kyy" secondAttribute="trailing" id="Jsf-cI-pLl"/>
-                            <constraint firstItem="TYi-RC-kyy" firstAttribute="top" secondItem="elD-m0-xUm" secondAttribute="bottom" id="Rbz-pz-WSB"/>
-                            <constraint firstItem="KZ6-tN-nBF" firstAttribute="top" secondItem="TYi-RC-kyy" secondAttribute="bottom" id="ai6-HI-xtK"/>
-                            <constraint firstItem="TYi-RC-kyy" firstAttribute="leading" secondItem="HQM-H8-V34" secondAttribute="leading" id="mjF-cJ-FKt"/>
+                            <constraint firstItem="fbT-Eq-R0G" firstAttribute="trailing" secondItem="TYi-RC-kyy" secondAttribute="trailing" id="Jsf-cI-pLl"/>
+                            <constraint firstItem="TYi-RC-kyy" firstAttribute="top" secondItem="fbT-Eq-R0G" secondAttribute="top" id="Rbz-pz-WSB"/>
+                            <constraint firstItem="fbT-Eq-R0G" firstAttribute="bottom" secondItem="TYi-RC-kyy" secondAttribute="bottom" id="ai6-HI-xtK"/>
+                            <constraint firstItem="TYi-RC-kyy" firstAttribute="leading" secondItem="fbT-Eq-R0G" secondAttribute="leading" id="mjF-cJ-FKt"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="fbT-Eq-R0G"/>
                     </view>
                     <connections>
                         <outlet property="slideSwitchView" destination="TYi-RC-kyy" id="zqj-cs-yfk"/>
@@ -268,10 +254,6 @@
         <scene sceneID="LaD-GT-cDA">
             <objects>
                 <viewController storyboardIdentifier="DemoSubViewController" id="heu-PR-oB1" customClass="DemoSubViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PhV-4R-KBk"/>
-                        <viewControllerLayoutGuide type="bottom" id="N1L-Wc-S1u"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BlO-86-h7z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,9 +267,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XMz-Zr-6uQ" firstAttribute="centerX" secondItem="BlO-86-h7z" secondAttribute="centerX" id="8Mo-DS-7KH"/>
+                            <constraint firstItem="XMz-Zr-6uQ" firstAttribute="centerX" secondItem="OYj-NT-fWV" secondAttribute="centerX" id="8Mo-DS-7KH"/>
                             <constraint firstItem="XMz-Zr-6uQ" firstAttribute="centerY" secondItem="BlO-86-h7z" secondAttribute="centerY" id="hkt-ow-4O5"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="OYj-NT-fWV"/>
                     </view>
                     <connections>
                         <outlet property="labelNum" destination="XMz-Zr-6uQ" id="tg5-Ae-xQu"/>
@@ -301,10 +284,6 @@
         <scene sceneID="d58-ab-jP8">
             <objects>
                 <viewController storyboardIdentifier="CustomerTabViewController" id="mXC-4i-3R7" customClass="CustomerTabViewController" customModule="CHSlideSwitchView_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BG8-l8-HF7"/>
-                        <viewControllerLayoutGuide type="bottom" id="nRW-fN-xLU"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wsR-04-v3e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -332,14 +311,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0zF-dh-RfR" firstAttribute="leading" secondItem="wsR-04-v3e" secondAttribute="leading" constant="10" id="1QS-gB-lRb"/>
-                            <constraint firstItem="0zF-dh-RfR" firstAttribute="top" secondItem="BG8-l8-HF7" secondAttribute="bottom" id="6wG-bp-7XC"/>
+                            <constraint firstItem="0zF-dh-RfR" firstAttribute="leading" secondItem="YhQ-ab-DAE" secondAttribute="leading" constant="10" id="1QS-gB-lRb"/>
+                            <constraint firstItem="0zF-dh-RfR" firstAttribute="top" secondItem="YhQ-ab-DAE" secondAttribute="top" id="6wG-bp-7XC"/>
                             <constraint firstAttribute="bottom" secondItem="fom-kA-dVa" secondAttribute="bottom" id="KUs-mO-xoV"/>
                             <constraint firstItem="fom-kA-dVa" firstAttribute="top" secondItem="0zF-dh-RfR" secondAttribute="bottom" id="UEl-0A-vAo"/>
-                            <constraint firstAttribute="trailing" secondItem="fom-kA-dVa" secondAttribute="trailing" id="ZPX-h7-SQC"/>
-                            <constraint firstItem="fom-kA-dVa" firstAttribute="leading" secondItem="wsR-04-v3e" secondAttribute="leading" id="kd0-R7-UIP"/>
-                            <constraint firstAttribute="trailing" secondItem="0zF-dh-RfR" secondAttribute="trailing" constant="10" id="zeG-yw-dbP"/>
+                            <constraint firstItem="YhQ-ab-DAE" firstAttribute="trailing" secondItem="fom-kA-dVa" secondAttribute="trailing" id="ZPX-h7-SQC"/>
+                            <constraint firstItem="fom-kA-dVa" firstAttribute="leading" secondItem="YhQ-ab-DAE" secondAttribute="leading" id="kd0-R7-UIP"/>
+                            <constraint firstItem="YhQ-ab-DAE" firstAttribute="trailing" secondItem="0zF-dh-RfR" secondAttribute="trailing" constant="10" id="zeG-yw-dbP"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="YhQ-ab-DAE"/>
                     </view>
                     <toolbarItems/>
                     <connections>

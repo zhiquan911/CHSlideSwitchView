@@ -69,6 +69,9 @@ open class CHSlideSwitchView: UIView {
     /// 缓存页面对象，最大数量为cacheSize值
     open var viewsCache = [Int: AnyObject]()
     
+    /// 是否手势滑动
+    var isPaning: Bool = false
+    
     /// 代理
     @IBOutlet public weak var delegate: CHSlideSwitchViewDelegate? {
         didSet {
@@ -262,13 +265,18 @@ open class CHSlideSwitchView: UIView {
                 targetView = vc.view
             default:break
             }
-            
             targetView?.frame = CGRect(x: CGFloat(index) * self.width, y: 0, width: self.width, height: self.height)
             
         }
         
+        let oldContentWidth = self.rootScrollView.contentSize.width
         self.rootScrollView.contentSize = CGSize(width: CGFloat(viewCount) * self.width, height: self.scrollHeight)
         
+        //宽度有变化需要重置偏移
+        if oldContentWidth != self.rootScrollView.contentSize.width && oldContentWidth > 0 {
+            let point = CGPoint(x: CGFloat(self.currentIndex) * self.rootScrollView.width, y: 0)
+            self.setContentOffset(point, animated: false)
+        }
         
         
         
@@ -580,6 +588,7 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //scrollView.isScrollEnabled = false
         self.startOffsetX = scrollView.contentOffset.x
+        self.isPaning = true
     }
     
     
@@ -590,6 +599,9 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
 //        guard scrollView.isScrollEnabled else {
 //            return
 //        }
+        guard let isSelectTab = self.headerView?.isSelectTab, isSelectTab || self.isPaning else  {
+            return
+        }
         let scale = self.rootScrollView.contentOffset.x / self.rootScrollView.contentSize.width
         self.headerView?.changePointScale(scale: scale)
     }
@@ -610,6 +622,8 @@ extension CHSlideSwitchView: UIScrollViewDelegate {
         //获取当前页面是否可以继续滑动
         let canScroll = self.delegate?.slideSwitchView?(view: self, canSwipeScroll: self.currentIndex) ?? true
         scrollView.isScrollEnabled = canScroll
+        
+        self.isPaning = false
     }
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
