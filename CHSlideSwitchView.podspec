@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CHSlideSwitchView'
-  s.version          = '1.0.6'
+  s.version          = '1.1.0'
   s.summary          = 'This a slideSwitchView for Swift 3.0+.'
 
 # This description is used to generate tags and improve search results.

@@ -112,14 +112,33 @@ open class CHSlideSwitchView: UIView {
     
     /// 当前页面位置
     fileprivate var currentIndex: Int = -1
-//    {
-//        didSet {
-//            if oldValue != self.currentIndex {
-//                self.headerView?.selectedTabView(at: self.currentIndex)
-//            }
-//        }
-//    }
+
+    /// 当前页面位置
+    public var selectedIndex: Int {
+        return self.currentIndex
+    }
     
+    /// 当前选中的视图控制器
+    public var selectedViewController: UIViewController? {
+        let obj = self.viewsCache[self.selectedIndex]
+        switch obj {
+        case let vc as UIViewController:
+            return vc
+        default:
+            return nil
+        }
+    }
+    
+    /// 当前选中的视图
+    public var selectedView: UIView? {
+        let obj = self.viewsCache[self.selectedIndex]
+        switch obj {
+        case let view as UIView:
+            return view
+        default:
+            return nil
+        }
+    }
     
     // MARK: - 初始化方法
     
@@ -390,6 +409,8 @@ open class CHSlideSwitchView: UIView {
                 if let parent = self.parent {
                     parent.addChildViewController(vc)
                 }
+                //子控制记录它所属组件
+                vc.ch_slideSwitchView = self
             default:break
             }
             
@@ -529,6 +550,8 @@ open class CHSlideSwitchView: UIView {
         self.headerView?.selectedTabView(at: self.currentIndex, animated: animated, allowSame: allowSame)
         
     }
+    
+    
 }
 
 

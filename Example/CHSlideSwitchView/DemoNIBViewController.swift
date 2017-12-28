@@ -135,7 +135,10 @@ extension DemoNIBViewController: CHSlideSwitchViewDelegate {
     ///   - view: 组件对象
     ///   - atIndex: 点击位置
     func slideSwitchView(view: CHSlideSwitchView, didSelected atIndex: Int) {
-        NSLog("didSelected : \(atIndex)")
+        
+        if let selectedVC = view.selectedViewController as? DemoSubViewController {
+            NSLog("didSelected : \(atIndex) : \(selectedVC.num)")
+        }
     }
     
     
